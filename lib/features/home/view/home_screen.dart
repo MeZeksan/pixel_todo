@@ -47,7 +47,6 @@ class SliverTasks extends StatefulWidget {
 }
 
 class _SliverTasksState extends State<SliverTasks> {
-  @override
   final List<String> items = List.generate(20, (index) => 'Item $index');
   final List<bool> isChecked = List.generate(20, (index) => false);
 
