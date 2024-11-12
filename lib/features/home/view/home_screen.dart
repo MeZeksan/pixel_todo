@@ -19,19 +19,24 @@ class HomeScreen extends StatelessWidget {
           height: 56,
         ),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           children: [
             Flexible(
               flex: 2,
-              child: Column(children: [
-                SizedBox(
-                  height: 50,
-                ),
-                Text('Просто текст'),
-              ]),
+              child: Container(
+                color: theme.primaryColor,
+                width: double.infinity,
+                child: const Column(children: [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Text('Просто текст'),
+                ]),
+              ),
             ),
-            Expanded(flex: 4, child: CustomScrollView(slivers: [SliverTasks()]))
+            const Expanded(
+                flex: 4, child: CustomScrollView(slivers: [SliverTasks()]))
           ],
         ),
       ),
@@ -49,7 +54,7 @@ class SliverTasks extends StatefulWidget {
 }
 
 class _SliverTasksState extends State<SliverTasks> {
-  final List<String> items = List.generate(20, (index) => 'Item $index');
+  final List<String> items = List.generate(20, (index) => 'Задача $index');
   final List<bool> isChecked = List.generate(20, (index) => false);
 
   @override
@@ -57,35 +62,48 @@ class _SliverTasksState extends State<SliverTasks> {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
-          return Stack(
-            alignment: Alignment.center,
+          return Column(
             children: [
-              Image.asset(
-                'assets/images/pergament.png',
-                width: double.infinity,
-                height: 100,
-                fit: BoxFit.fill,
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/pergament.png',
+                    width: double.infinity,
+                    height: 100,
+                    fit: BoxFit.fill,
+                  ),
+                  Positioned(
+                    left: 16,
+                    child: Checkbox(
+                      activeColor: Colors.red,
+                      checkColor: Colors.blue,
+                      value: isChecked[index],
+                      onChanged: (value) {
+                        setState(() {
+                          isChecked[index] = value ?? false;
+                        });
+                      },
+                    ),
+                  ),
+                  Positioned(
+                    left: 60,
+                    child: Text(
+                      items[index],
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 22,
+                          fontFamily: "TeletactileRus"),
+                    ),
+                  ),
+                ],
               ),
-              Positioned(
-                left: 16,
-                child: Checkbox(
-                  activeColor: Colors.red,
-                  checkColor: Colors.blue,
-                  value: isChecked[index],
-                  onChanged: (value) {
-                    setState(() {
-                      isChecked[index] = value ?? false;
-                    });
-                  },
-                ),
-              ),
-              Positioned(
-                left: 60,
-                child: Text(
-                  items[index],
-                  style: const TextStyle(color: Colors.black, fontSize: 18),
-                ),
-              ),
+              if (index <
+                  items.length -
+                      1) // Добавляем SizedBox только между элементами
+                const SizedBox(
+                    height:
+                        8), // Вы можете изменить высоту по вашему усмотрению
             ],
           );
         },
