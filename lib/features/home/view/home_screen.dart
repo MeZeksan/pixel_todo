@@ -19,17 +19,19 @@ class HomeScreen extends StatelessWidget {
           height: 56,
         ),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           children: [
             Flexible(
               flex: 2,
-              child: Container(
-                color: theme.primaryColor,
-              ),
+              child: Column(children: [
+                SizedBox(
+                  height: 50,
+                ),
+                Text('Просто текст'),
+              ]),
             ),
-            const Expanded(
-                flex: 4, child: CustomScrollView(slivers: [SliverTasks()]))
+            Expanded(flex: 4, child: CustomScrollView(slivers: [SliverTasks()]))
           ],
         ),
       ),
@@ -61,8 +63,8 @@ class _SliverTasksState extends State<SliverTasks> {
               Image.asset(
                 'assets/images/pergament.png',
                 width: double.infinity,
-                height: 145,
-                fit: BoxFit.cover,
+                height: 100,
+                fit: BoxFit.fill,
               ),
               Positioned(
                 left: 16,
