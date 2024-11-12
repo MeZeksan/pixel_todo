@@ -16,11 +16,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    const primaryColor = Color.fromARGB(255, 166, 255, 82);
+    const primaryColor = Color.fromARGB(255, 176, 255, 183);
     return MaterialApp(
       home: const HomeScreen(),
       theme: ThemeData(
-          scaffoldBackgroundColor: const Color.fromARGB(255, 236, 236, 236),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 145, 118, 92),
           primaryColor: primaryColor,
           colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
           useMaterial3: true),

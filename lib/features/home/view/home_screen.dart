@@ -19,6 +19,77 @@ class HomeScreen extends StatelessWidget {
           height: 56,
         ),
       ),
+      body: Center(
+        child: Column(
+          children: [
+            Flexible(
+              flex: 2,
+              child: Container(
+                color: theme.primaryColor,
+              ),
+            ),
+            const Expanded(
+                flex: 4, child: CustomScrollView(slivers: [SliverTasks()]))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SliverTasks extends StatefulWidget {
+  const SliverTasks({
+    super.key,
+  });
+
+  @override
+  State<SliverTasks> createState() => _SliverTasksState();
+}
+
+class _SliverTasksState extends State<SliverTasks> {
+  @override
+  final List<String> items = List.generate(20, (index) => 'Item $index');
+  final List<bool> isChecked = List.generate(20, (index) => false);
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          return Stack(
+            alignment: Alignment.center,
+            children: [
+              Image.asset(
+                'assets/images/pergament.png',
+                width: double.infinity,
+                height: 145,
+                fit: BoxFit.cover,
+              ),
+              Positioned(
+                left: 16,
+                child: Checkbox(
+                  activeColor: Colors.red,
+                  checkColor: Colors.blue,
+                  value: isChecked[index],
+                  onChanged: (value) {
+                    setState(() {
+                      isChecked[index] = value ?? false;
+                    });
+                  },
+                ),
+              ),
+              Positioned(
+                left: 60,
+                child: Text(
+                  items[index],
+                  style: const TextStyle(color: Colors.black, fontSize: 18),
+                ),
+              ),
+            ],
+          );
+        },
+        childCount: items.length,
+      ),
     );
   }
 }
