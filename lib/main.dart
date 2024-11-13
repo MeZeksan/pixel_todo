@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'features/home/home.dart';
+import 'models/task/task.dart';
 
-void main() {
+const todoBoxName = 'todo_box_name';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter(); //инициализация Hive
+
+  Hive.registerAdapter(TaskAdapter()); //регистрируем адаптер
+
+  await Hive.openBox<Task>(todoBoxName);
+
   runApp(const MyApp());
 }
 
