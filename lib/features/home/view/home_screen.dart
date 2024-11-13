@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         child: Image.asset(
-          'assets/images/pokebox.png',
+          'assets/images/feather.png',
           width: 56,
           height: 56,
         ),
@@ -64,46 +64,44 @@ class _SliverTasksState extends State<SliverTasks> {
         (context, index) {
           return Column(
             children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/pergament.png',
-                    width: double.infinity,
-                    height: 100,
-                    fit: BoxFit.fill,
-                  ),
-                  Positioned(
-                    left: 16,
-                    child: Checkbox(
-                      activeColor: Colors.red,
-                      checkColor: Colors.blue,
-                      value: isChecked[index],
-                      onChanged: (value) {
-                        setState(() {
-                          isChecked[index] = value ?? false;
-                        });
-                      },
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/pergament.png',
+                      width: double.infinity,
+                      height: 100,
+                      fit: BoxFit.fill,
                     ),
-                  ),
-                  Positioned(
-                    left: 60,
-                    child: Text(
-                      items[index],
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 22,
-                          fontFamily: "TeletactileRus"),
+                    Positioned(
+                      left: 16,
+                      child: Checkbox(
+                        activeColor: Colors.red,
+                        checkColor: Colors.blue,
+                        value: isChecked[index],
+                        onChanged: (value) {
+                          setState(() {
+                            isChecked[index] = value ?? false;
+                          });
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                    Positioned(
+                      left: 60,
+                      child: Text(
+                        items[index],
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 22,
+                            fontFamily: "TeletactileRus"),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              if (index <
-                  items.length -
-                      1) // Добавляем SizedBox только между элементами
-                const SizedBox(
-                    height:
-                        8), // Вы можете изменить высоту по вашему усмотрению
             ],
           );
         },
