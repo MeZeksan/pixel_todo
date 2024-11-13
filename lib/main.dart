@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'features/home/home.dart';
@@ -13,8 +14,12 @@ void main() async {
 
   Hive.registerAdapter(TaskAdapter()); //регистрируем адаптер
 
-  await Hive.openBox<Task>(todoBoxName);
+  var boxTodo = await Hive.openBox<Task>(todoBoxName);
+  // Добавляем два экземпляра Task
+  await boxTodo.add(Task(taskTitle: 'Первая задача', isCompleted: false));
+  await boxTodo.add(Task(taskTitle: 'Вторая задача', isCompleted: true));
 
+  GetIt.I.registerSingleton<Box<Task>>(boxTodo);
   runApp(const MyApp());
 }
 
