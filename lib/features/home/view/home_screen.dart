@@ -123,11 +123,15 @@ class TaskItem extends StatelessWidget {
           ),
           Positioned(
             left: 60,
+            right: 16, // Добавляем right для ограничения ширины
             child: Text(
               task.taskTitle,
+              maxLines: 2, // Максимум 2 строки
+              overflow: TextOverflow.ellipsis, // Многоточие, если не помещается
+              softWrap: true, // Перенос текста на новую строку
               style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 22,
+                  fontSize: 18,
                   fontFamily: "TeletactileRus"),
             ),
           ),

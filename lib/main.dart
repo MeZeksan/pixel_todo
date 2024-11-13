@@ -15,9 +15,11 @@ void main() async {
   Hive.registerAdapter(TaskAdapter()); //регистрируем адаптер
 
   var boxTodo = await Hive.openBox<Task>(todoBoxName);
-  // Добавляем два экземпляра Task
-  await boxTodo.add(Task(taskTitle: 'Первая задача', isCompleted: false));
-  await boxTodo.add(Task(taskTitle: 'Вторая задача', isCompleted: true));
+
+  //Тестовые задачи
+  await boxTodo
+      .add(Task(taskTitle: 'Создать собственную задачу', isCompleted: false));
+  await boxTodo.add(Task(taskTitle: 'Скачать приложение!', isCompleted: true));
 
   GetIt.I.registerSingleton<Box<Task>>(boxTodo);
   runApp(const MyApp());
