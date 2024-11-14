@@ -1,7 +1,95 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pixel_todo/features/home/widgets/widgets.dart';
+import 'package:pixel_todo/models/task/task.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
+  void _showCustomDialog(BuildContext context) {
+    final TextEditingController taskController = TextEditingController();
+    final Box<Task> taskBox = GetIt.I<Box<Task>>();
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Stack(
+            children: [
+              Container(
+                width: 300,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  image: const DecorationImage(
+                    image: AssetImage("assets/images/pergament.png"),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      "Новая задача",
+                      style: TextStyle(
+                        fontFamily: "TeletactileRus",
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    TextField(
+                      controller: taskController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Введите задачу',
+                        labelStyle: TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontFamily: "TeletactileRus",
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        final newTask = taskController.text;
+                        if (newTask.isNotEmpty) {
+                          var addTask = Task(taskTitle: newTask);
+                          taskBox.add(addTask);
+                          Navigator.of(context).pop(); // Закрыть диалог
+                        }
+                      },
+                      child: const Text(
+                        "Добавить",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontFamily: "TeletactileRus",
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 8,
+                right: 8,
+                child: IconButton(
+                  icon: const Icon(Icons.close, color: Colors.black),
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Закрыть диалог
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +97,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          //TODO сделать действие
+          _showCustomDialog(context); // Вызов метода показа диалога
         },
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -36,76 +124,9 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const Expanded(
-                flex: 4, child: CustomScrollView(slivers: [SliverTasks()]))
+                flex: 4, child: CustomScrollView(slivers: [TasksList()])),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class SliverTasks extends StatefulWidget {
-  const SliverTasks({
-    super.key,
-  });
-
-  @override
-  State<SliverTasks> createState() => _SliverTasksState();
-}
-
-class _SliverTasksState extends State<SliverTasks> {
-  final List<String> items = List.generate(20, (index) => 'Задача $index');
-  final List<bool> isChecked = List.generate(20, (index) => false);
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          return Column(
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/pergament.png',
-                      width: double.infinity,
-                      height: 100,
-                      fit: BoxFit.fill,
-                    ),
-                    Positioned(
-                      left: 16,
-                      child: Checkbox(
-                        activeColor: Colors.red,
-                        checkColor: Colors.blue,
-                        value: isChecked[index],
-                        onChanged: (value) {
-                          setState(() {
-                            isChecked[index] = value ?? false;
-                          });
-                        },
-                      ),
-                    ),
-                    Positioned(
-                      left: 60,
-                      child: Text(
-                        items[index],
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 22,
-                            fontFamily: "TeletactileRus"),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          );
-        },
-        childCount: items.length,
       ),
     );
   }
