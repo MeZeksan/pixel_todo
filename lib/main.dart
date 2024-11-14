@@ -16,11 +16,6 @@ void main() async {
 
   var boxTodo = await Hive.openBox<Task>(todoBoxName);
 
-  //Тестовые задачи
-  await boxTodo
-      .add(Task(taskTitle: 'Создать собственную задачу', isCompleted: false));
-  await boxTodo.add(Task(taskTitle: 'Скачать приложение!', isCompleted: true));
-
   GetIt.I.registerSingleton<Box<Task>>(boxTodo);
   runApp(const MyApp());
 }
