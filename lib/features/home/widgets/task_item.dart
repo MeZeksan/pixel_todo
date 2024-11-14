@@ -39,16 +39,25 @@ class TaskItem extends StatelessWidget {
           ),
           Positioned(
             left: 60,
-            right: 16, // Добавляем right для ограничения ширины
+            right: 56, // Отступ для кнопки удаления
             child: Text(
               task.taskTitle,
-              maxLines: 2, // Максимум 2 строки
-              overflow: TextOverflow.ellipsis, // Многоточие, если не помещается
-              softWrap: true, // Перенос текста на новую строку
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              softWrap: true,
               style: const TextStyle(
                   color: Colors.black,
                   fontSize: 18,
                   fontFamily: "TeletactileRus"),
+            ),
+          ),
+          Positioned(
+            right: 16, // Позиция кнопки удаления
+            child: IconButton(
+              icon: const Icon(Icons.delete, color: Colors.red),
+              onPressed: () {
+                taskBox.deleteAt(index); // Удаление задачи из коробки
+              },
             ),
           ),
         ],
