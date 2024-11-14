@@ -11,81 +11,80 @@ class HomeScreen extends StatelessWidget {
     final TextEditingController taskController = TextEditingController();
     final Box<Task> taskBox = GetIt.I<Box<Task>>();
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return Dialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Container(
-            width: 300,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                image: const DecorationImage(
-                    image: AssetImage(
-                        "assets/images/pergament.png"), //TODO надо заменить на нормальную картинку
-                    fit: BoxFit.fill)),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  "Новая задача",
-                  style: TextStyle(
-                    fontFamily: "TeletactileRus",
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+          child: Stack(
+            children: [
+              Container(
+                width: 300,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  image: const DecorationImage(
+                    image: AssetImage("assets/images/pergament.png"),
+                    fit: BoxFit.fill,
                   ),
                 ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: taskController,
-                  decoration: const InputDecoration(
-                      // fillColor: Color.fromARGB(255, 105, 93, 78),
-                      // filled: true,
-                      border: OutlineInputBorder(),
-                      labelText: 'Введите задачу',
-                      labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          fontFamily: "TeletactileRus")),
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
+                    const Text(
+                      "Новая задача",
+                      style: TextStyle(
+                        fontFamily: "TeletactileRus",
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    TextField(
+                      controller: taskController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Введите задачу',
+                        labelStyle: TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontFamily: "TeletactileRus",
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () {
-                        // Логика добавления задачи
                         final newTask = taskController.text;
                         if (newTask.isNotEmpty) {
                           var addTask = Task(taskTitle: newTask);
                           taskBox.add(addTask);
-                          Navigator.of(context)
-                              .pop(); // Закрыть диалог после добавления
+                          Navigator.of(context).pop(); // Закрыть диалог
                         }
                       },
                       child: const Text(
                         "Добавить",
                         style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontFamily: "TeletactileRus"),
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text(
-                        "Отменить",
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontFamily: "TeletactileRus"),
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontFamily: "TeletactileRus",
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+              Positioned(
+                top: 8,
+                right: 8,
+                child: IconButton(
+                  icon: const Icon(Icons.close, color: Colors.black),
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Закрыть диалог
+                  },
+                ),
+              ),
+            ],
           ),
         );
       },
