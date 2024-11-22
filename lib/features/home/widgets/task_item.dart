@@ -25,8 +25,8 @@ class TaskItem extends StatelessWidget {
           Positioned(
             left: 16,
             child: Checkbox(
-              activeColor: Colors.red,
-              checkColor: Colors.blue,
+              activeColor: Colors.deepPurple,
+              checkColor: Colors.lightGreen,
               value: task.isCompleted,
               onChanged: (value) {
                 taskBox.putAt(
@@ -54,7 +54,8 @@ class TaskItem extends StatelessWidget {
           Positioned(
             right: 16, // Позиция кнопки удаления
             child: IconButton(
-              icon: const Icon(Icons.delete, color: Colors.red),
+              icon: const Icon(Icons.delete,
+                  color: Color.fromARGB(255, 65, 65, 65)),
               onPressed: () {
                 taskBox.deleteAt(index); // Удаление задачи из коробки
               },

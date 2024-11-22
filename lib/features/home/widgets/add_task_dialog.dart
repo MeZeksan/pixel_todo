@@ -15,6 +15,7 @@ class AddTaskDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: Colors.transparent, // Сделаем фон диалога прозрачным
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -24,6 +25,7 @@ class AddTaskDialog extends StatelessWidget {
             width: 300,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
+              color: Colors.transparent, // Сделаем фон контейнера прозрачным
               borderRadius: BorderRadius.circular(12),
               image: const DecorationImage(
                 image: AssetImage("assets/images/pergament.png"),
