@@ -27,6 +27,7 @@ flutter:
     - assets/images/pokebox.png
     - assets/images/pergament.png
     - assets/images/feather.png
+    - assets/images/wooden_background_desk.png
   
   fonts:
     - family: TeletactileRus

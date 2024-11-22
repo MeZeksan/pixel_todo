@@ -51,8 +51,24 @@ class HomeScreen extends StatelessWidget {
                 ]),
               ),
             ),
-            const Expanded(
-                flex: 4, child: CustomScrollView(slivers: [TasksList()])),
+            // Добавляем фон в области задач
+            Expanded(
+              flex: 4,
+              child: Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    alignment: Alignment.topLeft,
+                    image:
+                        AssetImage('assets/images/wooden_background_desk.png'),
+                    fit: BoxFit.contain,
+                    repeat: ImageRepeat.repeat, // Повторение фона
+                  ),
+                ),
+                child: const CustomScrollView(
+                  slivers: [TasksList()],
+                ),
+              ),
+            ),
           ],
         ),
       ),
