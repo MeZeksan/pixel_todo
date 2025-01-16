@@ -45,10 +45,13 @@ class TaskItem extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               softWrap: true,
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontFamily: "TeletactileRus"),
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontFamily: "TeletactileRus",
+                decoration:
+                    task.isCompleted ? TextDecoration.lineThrough : null,
+              ),
             ),
           ),
           Positioned(
