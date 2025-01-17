@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pixel_todo/features/task_detail/view/view.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class TaskItem extends StatelessWidget {
@@ -13,58 +14,68 @@ class TaskItem extends StatelessWidget {
     final Box<Task> taskBox = Hive.box<Task>('todo_box_name');
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Image.asset(
-            'assets/images/pergament.png',
-            width: double.infinity,
-            height: 100,
-            fit: BoxFit.fill,
-          ),
-          Positioned(
-            left: 16,
-            child: Checkbox(
-              activeColor: Colors.deepPurple,
-              checkColor: Colors.lightGreen,
-              value: task.isCompleted,
-              onChanged: (value) {
-                taskBox.putAt(
-                    index,
-                    Task(
-                        taskTitle: task.taskTitle,
-                        isCompleted: value ?? false));
-              },
+      child: GestureDetector(
+        onLongPress: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => TaskDetailsScreen(task: task, index: index),
             ),
-          ),
-          Positioned(
-            left: 60,
-            right: 56, // Отступ для кнопки удаления
-            child: Text(
-              task.taskTitle,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              softWrap: true,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-                fontFamily: "TeletactileRus",
-                decoration:
-                    task.isCompleted ? TextDecoration.lineThrough : null,
+          );
+        },
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Image.asset(
+              'assets/images/pergament.png',
+              width: double.infinity,
+              height: 100,
+              fit: BoxFit.fill,
+            ),
+            Positioned(
+              left: 16,
+              child: Checkbox(
+                activeColor: Colors.deepPurple,
+                checkColor: Colors.lightGreen,
+                value: task.isCompleted,
+                onChanged: (value) {
+                  taskBox.putAt(
+                      index,
+                      Task(
+                          taskTitle: task.taskTitle,
+                          isCompleted: value ?? false));
+                },
               ),
             ),
-          ),
-          Positioned(
-            right: 16, // Позиция кнопки удаления
-            child: IconButton(
-              icon: const Icon(Icons.delete,
-                  color: Color.fromARGB(255, 65, 65, 65)),
-              onPressed: () {
-                taskBox.deleteAt(index); // Удаление задачи из коробки
-              },
+            Positioned(
+              left: 60,
+              right: 56, // Отступ для кнопки удаления
+              child: Text(
+                task.taskTitle,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: true,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontFamily: "TeletactileRus",
+                  decoration:
+                      task.isCompleted ? TextDecoration.lineThrough : null,
+                ),
+              ),
             ),
-          ),
-        ],
+            Positioned(
+              right: 16, // Позиция кнопки удаления
+              child: IconButton(
+                icon: const Icon(Icons.delete,
+                    color: Color.fromARGB(255, 65, 65, 65)),
+                onPressed: () {
+                  taskBox.deleteAt(index); // Удаление задачи из коробки
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
