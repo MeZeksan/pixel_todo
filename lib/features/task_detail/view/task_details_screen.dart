@@ -40,7 +40,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Task Details'),
+        title: const Text('Задача'),
         actions: [
           IconButton(
             icon: const Icon(Icons.save),
@@ -54,7 +54,17 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
-              decoration: const InputDecoration(labelText: 'Task Title'),
+              style: const TextStyle(
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontFamily: "TeletactileRus",
+              ),
+              decoration: const InputDecoration(
+                labelText: 'Название задачи',
+                labelStyle: TextStyle(
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontFamily: "TeletactileRus",
+                ),
+              ),
               controller: TextEditingController(text: _taskTitle)
                 ..selection =
                     TextSelection.collapsed(offset: _taskTitle.length),
@@ -64,11 +74,21 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
             ),
             const SizedBox(height: 16),
             TextField(
-              decoration: const InputDecoration(labelText: 'Task Description'),
+              style: const TextStyle(
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontFamily: "TeletactileRus",
+              ),
+              decoration: const InputDecoration(
+                labelText: 'Описание задачи',
+                labelStyle: TextStyle(
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontFamily: "TeletactileRus",
+                ),
+              ),
               controller: TextEditingController(text: _taskDescription)
                 ..selection =
                     TextSelection.collapsed(offset: _taskDescription.length),
-              maxLines: 5,
+              maxLines: 10,
               onChanged: (value) {
                 _taskDescription = value;
               },
@@ -77,7 +97,13 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Completed:'),
+                const Text(
+                  'Статус задачи:',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontFamily: "TeletactileRus",
+                  ),
+                ),
                 Switch(
                   value: _isCompleted,
                   onChanged: (value) {

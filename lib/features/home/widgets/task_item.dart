@@ -15,7 +15,7 @@ class TaskItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: GestureDetector(
-        onLongPress: () {
+        onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
