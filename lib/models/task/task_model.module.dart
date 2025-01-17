@@ -9,9 +9,14 @@ class Task {
 
   @HiveField(1)
   bool isCompleted;
-  //TODO добавить description, isCompletem priority, dueDate
+
+  @HiveField(2)
+  String taskDescription;
+
+  //TODO добавить , isCompletem priority, dueDate
   Task({
     this.taskTitle = '',
     this.isCompleted = false,
+    this.taskDescription = '',
   });
 }
