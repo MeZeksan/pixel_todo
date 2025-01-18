@@ -81,7 +81,7 @@ class TaskItem extends StatelessWidget {
                 softWrap: true,
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 18,
+                  fontSize: 14,
                   fontFamily: "TeletactileRus",
                   decoration:
                       task.isCompleted ? TextDecoration.lineThrough : null,

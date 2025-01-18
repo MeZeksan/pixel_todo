@@ -79,12 +79,14 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               style: const TextStyle(
                 color: Color.fromARGB(255, 0, 0, 0),
                 fontFamily: "TeletactileRus",
+                fontSize: 14,
               ),
               decoration: const InputDecoration(
                 labelText: 'Название задачи',
                 labelStyle: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
                   fontFamily: "TeletactileRus",
+                  fontSize: 14,
                 ),
               ),
               controller: TextEditingController(text: _taskTitle)
@@ -99,6 +101,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               style: const TextStyle(
                 color: Color.fromARGB(255, 0, 0, 0),
                 fontFamily: "TeletactileRus",
+                fontSize: 14,
               ),
               decoration: const InputDecoration(
                 labelText: 'Описание задачи',
@@ -124,6 +127,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
                     fontFamily: "TeletactileRus",
+                    fontSize: 14,
                   ),
                 ),
                 Switch(
@@ -142,6 +146,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               style: TextStyle(
                 color: Color.fromARGB(255, 0, 0, 0),
                 fontFamily: "TeletactileRus",
+                fontSize: 14,
               ),
             ),
             const SizedBox(height: 8),
