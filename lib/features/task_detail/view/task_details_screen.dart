@@ -16,6 +16,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   late String _taskTitle;
   late String _taskDescription;
   late bool _isCompleted;
+  late int _priority;
 
   @override
   void initState() {
@@ -23,6 +24,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     _taskTitle = widget.task.taskTitle;
     _taskDescription = widget.task.taskDescription;
     _isCompleted = widget.task.isCompleted;
+    _priority = widget.task.priority;
   }
 
   void _saveTask() {
@@ -31,9 +33,29 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
       taskTitle: _taskTitle,
       isCompleted: _isCompleted,
       taskDescription: _taskDescription,
+      priority: _priority,
     );
     taskBox.putAt(widget.index, updatedTask);
     Navigator.pop(context); // Возвращаемся на предыдущую страницу
+  }
+
+  Widget _buildPriorityOption(int priorityLevel, String imagePath) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _priority = priorityLevel;
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: _priority == priorityLevel
+              ? Border.all(color: Colors.blue, width: 3)
+              : null,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Image.asset(imagePath, width: 50, height: 50),
+      ),
+    );
   }
 
   @override
@@ -112,6 +134,26 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                     });
                   },
                 ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Приоритет:',
+              style: TextStyle(
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontFamily: "TeletactileRus",
+              ),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildPriorityOption(0,
+                    'assets/images/catbox.png'), // Пример для низкого приоритета
+                _buildPriorityOption(
+                    1, 'assets/images/catbox.png'), // Средний приоритет
+                _buildPriorityOption(
+                    2, 'assets/images/catbox.png'), // Высокий приоритет
               ],
             ),
           ],
