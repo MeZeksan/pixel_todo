@@ -17,11 +17,11 @@ class TaskItem extends StatelessWidget {
     String getPriorityImage(int priority) {
       switch (priority) {
         case 0:
-          return 'assets/images/catbox.png'; // Изображение для низкого приоритета
+          return 'assets/images/easy.png'; // Изображение для низкого приоритета
         case 1:
-          return 'assets/images/pokebox.png'; // Изображение для среднего приоритета
+          return 'assets/images/medium.png'; // Изображение для среднего приоритета
         case 2:
-          return 'assets/images/catbox.png'; // Изображение для высокого приоритета
+          return 'assets/images/hard.png'; // Изображение для высокого приоритета
         default:
           return 'assets/images/catbox.png'; // По умолчанию низкий приоритет
       }
