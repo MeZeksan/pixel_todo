@@ -22,9 +22,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/button.png
-    - assets/images/catbox.png
-    - assets/images/pokebox.png
+    - assets/images/easy.png
+    - assets/images/medium.png
+    - assets/images/hard.png
     - assets/images/pergament.png
     - assets/images/feather.png
     - assets/images/wooden_background_desk.png

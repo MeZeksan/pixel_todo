@@ -12,6 +12,21 @@ class TaskItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Box<Task> taskBox = Hive.box<Task>('todo_box_name');
+
+// Функция для выбора картинки в зависимости от приоритета
+    String getPriorityImage(int priority) {
+      switch (priority) {
+        case 0:
+          return 'assets/images/easy.png'; // Изображение для низкого приоритета
+        case 1:
+          return 'assets/images/medium.png'; // Изображение для среднего приоритета
+        case 2:
+          return 'assets/images/hard.png'; // Изображение для высокого приоритета
+        default:
+          return 'assets/images/catbox.png'; // По умолчанию низкий приоритет
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: GestureDetector(
@@ -48,7 +63,16 @@ class TaskItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 60,
+              // Добавляем изображение в зависимости от приоритета
+              left: 50,
+              child: Image.asset(
+                getPriorityImage(task.priority),
+                width: 25,
+                height: 25,
+              ),
+            ),
+            Positioned(
+              left: 80,
               right: 56, // Отступ для кнопки удаления
               child: Text(
                 task.taskTitle,
