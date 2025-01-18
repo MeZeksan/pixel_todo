@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: const HomeScreen(),
       theme: ThemeData(
-          scaffoldBackgroundColor: const Color.fromARGB(255, 75, 75, 75),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 172, 172, 182),
           primaryColor: primaryColor,
           colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
           useMaterial3: true),
