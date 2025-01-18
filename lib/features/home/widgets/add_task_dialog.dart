@@ -46,9 +46,10 @@ class AddTaskDialog extends StatelessWidget {
                 const SizedBox(height: 16),
                 TextField(
                   style: const TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),
-                    fontFamily: "TeletactileRus",
-                  ),
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontFamily: "TeletactileRus",
+                      fontSize: 14),
+                  maxLines: 2,
                   controller: taskController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
