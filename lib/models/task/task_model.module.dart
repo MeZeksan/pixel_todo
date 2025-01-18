@@ -13,10 +13,16 @@ class Task {
   @HiveField(2)
   String taskDescription;
 
-  //TODO добавить , isCompletem priority, dueDate
-  Task({
-    this.taskTitle = '',
-    this.isCompleted = false,
-    this.taskDescription = '',
-  });
+  @HiveField(3)
+  int priority; // Приоритет задачи (0 - низкий, 1 - средний, 2 - высокий)
+
+  // @HiveField(4)    // пока что в долгий ящик
+  // DateTime dueDate;
+
+  //TODO добавить dueDate
+  Task(
+      {this.taskTitle = '',
+      this.isCompleted = false,
+      this.taskDescription = '',
+      this.priority = 0});
 }
