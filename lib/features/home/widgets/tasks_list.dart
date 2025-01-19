@@ -25,9 +25,9 @@ class _SliverTasksState extends State<TasksList> {
           );
         }
 
-        // Fetch all tasks and sort them by priority
+        // Сортировка по приоритету
         final List<Task> tasks = box.values.toList()
-          ..sort((a, b) => a.priority.compareTo(b.priority));
+          ..sort((a, b) => b.priority.compareTo(a.priority));
 
         return SliverList(
           delegate: SliverChildBuilderDelegate(
