@@ -66,22 +66,21 @@ class AddTaskDialog extends StatelessWidget {
                   onPressed: () {
                     final newTask = taskController.text;
                     if (newTask.isNotEmpty) {
-                      // Generate a unique ID for the new task
+                      // генерация уникального id для задачи
                       final taskId = const Uuid().v4();
 
-                      // Create a new task with the generated ID
                       final addTask = Task(
-                        id: taskId, // Pass the unique ID
+                        id: taskId,
                         taskTitle: newTask,
                         isCompleted: false,
                         taskDescription: '',
-                        priority: 0, // Default priority
+                        priority: 0,
                       );
 
-                      // Add the task to the Hive box using its ID
+                      // Добавление задачи происходит по id
+                      // небольшая неудача - (задачи в разброс из-за вида ключа)
                       taskBox.put(taskId, addTask);
 
-                      // Close the dialog
                       Navigator.of(context).pop();
                     }
                   },

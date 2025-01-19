@@ -12,6 +12,7 @@ class TaskDetailsScreen extends StatefulWidget {
 }
 
 class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
+  //т.к. id не меняем, то и добавлять его нет смысла
   late String _taskTitle;
   late String _taskDescription;
   late bool _isCompleted;
@@ -29,14 +30,14 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   void _saveTask() {
     final taskBox = Hive.box<Task>('todo_box_name');
     final updatedTask = Task(
-      id: widget.task.id, // Use the task's id
+      id: widget.task.id, // Все так же используем тот же айдишник
       taskTitle: _taskTitle,
       isCompleted: _isCompleted,
       taskDescription: _taskDescription,
       priority: _priority,
     );
-    taskBox.put(widget.task.id, updatedTask); // Save using the task's id
-    Navigator.pop(context); // Return to the previous screen
+    taskBox.put(widget.task.id, updatedTask);
+    Navigator.pop(context);
   }
 
   Widget _buildPriorityOption(int priorityLevel, String imagePath) {
@@ -66,7 +67,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.save),
-            onPressed: _saveTask, // Save changes when pressed
+            onPressed: _saveTask,
           ),
         ],
       ),

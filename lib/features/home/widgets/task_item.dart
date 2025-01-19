@@ -53,7 +53,7 @@ class TaskItem extends StatelessWidget {
                 checkColor: Colors.lightGreen,
                 value: task.isCompleted,
                 onChanged: (value) {
-                  // Update the task in the Hive box using its id
+                  // Обновление задачи по id
                   final updatedTask = Task(
                     id: task.id,
                     taskTitle: task.taskTitle,
@@ -76,7 +76,7 @@ class TaskItem extends StatelessWidget {
             ),
             Positioned(
               left: 80,
-              right: 56, // Отступ для кнопки удаления
+              right: 56,
               child: Text(
                 task.taskTitle,
                 maxLines: 2,
@@ -92,12 +92,12 @@ class TaskItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              right: 16, // Позиция кнопки удаления
+              right: 16,
               child: IconButton(
                 icon: const Icon(Icons.delete,
                     color: Color.fromARGB(255, 65, 65, 65)),
                 onPressed: () {
-                  // Delete the task from the Hive box using its id
+                  // Удаление задачи по id
                   taskBox.delete(task.id);
                 },
               ),

@@ -30,7 +30,7 @@ class Task {
     this.priority = 0,
   });
 
-  // Override equality and hashCode to compare tasks based on their id
+  // Переписка оператора  == для задач
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
