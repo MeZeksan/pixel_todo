@@ -41,15 +41,13 @@ class HomeScreen extends StatelessWidget {
             Flexible(
               flex: 2,
               child: Container(
-                color: theme.primaryColor,
-                width: double.infinity,
-                child: const Column(children: [
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Text('Просто текст'),
-                ]),
-              ),
+                  height: double.maxFinite,
+                  color: theme.primaryColor,
+                  width: double.infinity,
+                  child: Image.asset(
+                    'assets/images/stub_hero.png',
+                    fit: BoxFit.fill,
+                  )),
             ),
             // Добавляем фон в области задач
             Expanded(
