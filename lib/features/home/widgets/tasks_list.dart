@@ -21,7 +21,18 @@ class _SliverTasksState extends State<TasksList> {
       builder: (context, Box<Task> box, _) {
         if (box.isEmpty) {
           return const SliverToBoxAdapter(
-            child: Center(child: Text('Нет задач')),
+            child: Center(
+                child: Padding(
+              padding: EdgeInsets.only(top: 60),
+              child: Text(
+                'Нет доступных квестов',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromARGB(255, 191, 191, 191),
+                  fontFamily: "TeletactileRus",
+                ),
+              ),
+            )),
           );
         }
 
