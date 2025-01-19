@@ -73,96 +73,99 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextField(
-              style: const TextStyle(
-                color: Color.fromARGB(255, 0, 0, 0),
-                fontFamily: "TeletactileRus",
-                fontSize: 14,
-              ),
-              decoration: const InputDecoration(
-                labelText: 'Название задачи',
-                labelStyle: TextStyle(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextField(
+                maxLines: 2,
+                style: const TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
                   fontFamily: "TeletactileRus",
                   fontSize: 14,
                 ),
-              ),
-              controller: TextEditingController(text: _taskTitle)
-                ..selection =
-                    TextSelection.collapsed(offset: _taskTitle.length),
-              onChanged: (value) {
-                _taskTitle = value;
-              },
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              style: const TextStyle(
-                color: Color.fromARGB(255, 0, 0, 0),
-                fontFamily: "TeletactileRus",
-                fontSize: 14,
-              ),
-              decoration: const InputDecoration(
-                labelText: 'Описание задачи',
-                labelStyle: TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  fontFamily: "TeletactileRus",
-                ),
-              ),
-              controller: TextEditingController(text: _taskDescription)
-                ..selection =
-                    TextSelection.collapsed(offset: _taskDescription.length),
-              maxLines: 10,
-              onChanged: (value) {
-                _taskDescription = value;
-              },
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Статус задачи:',
-                  style: TextStyle(
+                decoration: const InputDecoration(
+                  labelText: 'Название задачи',
+                  labelStyle: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
                     fontFamily: "TeletactileRus",
                     fontSize: 14,
                   ),
                 ),
-                Switch(
-                  value: _isCompleted,
-                  onChanged: (value) {
-                    setState(() {
-                      _isCompleted = value;
-                    });
-                  },
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Приоритет:',
-              style: TextStyle(
-                color: Color.fromARGB(255, 0, 0, 0),
-                fontFamily: "TeletactileRus",
-                fontSize: 14,
+                controller: TextEditingController(text: _taskTitle)
+                  ..selection =
+                      TextSelection.collapsed(offset: _taskTitle.length),
+                onChanged: (value) {
+                  _taskTitle = value;
+                },
               ),
-            ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildPriorityOption(
-                    0, 'assets/images/easy.png'), // Low priority
-                _buildPriorityOption(
-                    1, 'assets/images/medium.png'), // Medium priority
-                _buildPriorityOption(
-                    2, 'assets/images/hard.png'), // High priority
-              ],
-            ),
-          ],
+              const SizedBox(height: 16),
+              TextField(
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontFamily: "TeletactileRus",
+                  fontSize: 14,
+                ),
+                decoration: const InputDecoration(
+                  labelText: 'Описание задачи',
+                  labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontFamily: "TeletactileRus",
+                  ),
+                ),
+                controller: TextEditingController(text: _taskDescription)
+                  ..selection =
+                      TextSelection.collapsed(offset: _taskDescription.length),
+                maxLines: 10,
+                onChanged: (value) {
+                  _taskDescription = value;
+                },
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Статус задачи:',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontFamily: "TeletactileRus",
+                      fontSize: 14,
+                    ),
+                  ),
+                  Switch(
+                    value: _isCompleted,
+                    onChanged: (value) {
+                      setState(() {
+                        _isCompleted = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Приоритет:',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontFamily: "TeletactileRus",
+                  fontSize: 14,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildPriorityOption(
+                      0, 'assets/images/easy.png'), // Low priority
+                  _buildPriorityOption(
+                      1, 'assets/images/medium.png'), // Medium priority
+                  _buildPriorityOption(
+                      2, 'assets/images/hard.png'), // High priority
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
