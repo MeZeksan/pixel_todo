@@ -4,15 +4,15 @@ import 'package:pixel_todo/models/task/task.dart';
 
 class TaskDetailsScreen extends StatefulWidget {
   final Task task;
-  final int index;
 
-  const TaskDetailsScreen({super.key, required this.task, required this.index});
+  const TaskDetailsScreen({super.key, required this.task});
 
   @override
   _TaskDetailsScreenState createState() => _TaskDetailsScreenState();
 }
 
 class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
+  //т.к. id не меняем, то и добавлять его нет смысла
   late String _taskTitle;
   late String _taskDescription;
   late bool _isCompleted;
@@ -30,13 +30,14 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   void _saveTask() {
     final taskBox = Hive.box<Task>('todo_box_name');
     final updatedTask = Task(
+      id: widget.task.id, // Все так же используем тот же айдишник
       taskTitle: _taskTitle,
       isCompleted: _isCompleted,
       taskDescription: _taskDescription,
       priority: _priority,
     );
-    taskBox.putAt(widget.index, updatedTask);
-    Navigator.pop(context); // Возвращаемся на предыдущую страницу
+    taskBox.put(widget.task.id, updatedTask);
+    Navigator.pop(context);
   }
 
   Widget _buildPriorityOption(int priorityLevel, String imagePath) {
@@ -66,7 +67,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.save),
-            onPressed: _saveTask, // Сохраняем изменения при нажатии
+            onPressed: _saveTask,
           ),
         ],
       ),
@@ -153,12 +154,12 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildPriorityOption(0,
-                    'assets/images/easy.png'), // Пример для низкого приоритета
                 _buildPriorityOption(
-                    1, 'assets/images/medium.png'), // Средний приоритет
+                    0, 'assets/images/easy.png'), // Low priority
                 _buildPriorityOption(
-                    2, 'assets/images/hard.png'), // Высокий приоритет
+                    1, 'assets/images/medium.png'), // Medium priority
+                _buildPriorityOption(
+                    2, 'assets/images/hard.png'), // High priority
               ],
             ),
           ],

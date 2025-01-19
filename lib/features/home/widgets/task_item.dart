@@ -5,15 +5,14 @@ import 'package:pixel_todo/models/task/task.dart';
 
 class TaskItem extends StatelessWidget {
   final Task task;
-  final int index;
 
-  const TaskItem({super.key, required this.task, required this.index});
+  const TaskItem({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
     final Box<Task> taskBox = Hive.box<Task>('todo_box_name');
 
-// Функция для выбора картинки в зависимости от приоритета
+    // Функция для выбора картинки в зависимости от приоритета
     String getPriorityImage(int priority) {
       switch (priority) {
         case 0:
@@ -34,7 +33,7 @@ class TaskItem extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => TaskDetailsScreen(task: task, index: index),
+              builder: (context) => TaskDetailsScreen(task: task),
             ),
           );
         },
@@ -54,11 +53,15 @@ class TaskItem extends StatelessWidget {
                 checkColor: Colors.lightGreen,
                 value: task.isCompleted,
                 onChanged: (value) {
-                  taskBox.putAt(
-                      index,
-                      Task(
-                          taskTitle: task.taskTitle,
-                          isCompleted: value ?? false));
+                  // Обновление задачи по id
+                  final updatedTask = Task(
+                    id: task.id,
+                    taskTitle: task.taskTitle,
+                    isCompleted: value ?? false,
+                    taskDescription: task.taskDescription,
+                    priority: task.priority,
+                  );
+                  taskBox.put(task.id, updatedTask);
                 },
               ),
             ),
@@ -73,7 +76,7 @@ class TaskItem extends StatelessWidget {
             ),
             Positioned(
               left: 80,
-              right: 56, // Отступ для кнопки удаления
+              right: 56,
               child: Text(
                 task.taskTitle,
                 maxLines: 2,
@@ -89,12 +92,13 @@ class TaskItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              right: 16, // Позиция кнопки удаления
+              right: 16,
               child: IconButton(
                 icon: const Icon(Icons.delete,
                     color: Color.fromARGB(255, 65, 65, 65)),
                 onPressed: () {
-                  taskBox.deleteAt(index); // Удаление задачи из коробки
+                  // Удаление задачи по id
+                  taskBox.delete(task.id);
                 },
               ),
             ),
