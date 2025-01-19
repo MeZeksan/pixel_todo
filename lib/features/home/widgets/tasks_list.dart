@@ -33,17 +33,9 @@ class _SliverTasksState extends State<TasksList> {
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               final task = tasks[index];
-              return TaskItem(task: task, index: index);
+              return TaskItem(task: task, key: ValueKey(task.id));
             },
             childCount: tasks.length,
-            findChildIndexCallback: (key) {
-              if (key is ValueKey<int>) {
-                final taskId = key.value;
-                final task = tasks.firstWhere((task) => task.id == taskId);
-                return tasks.indexOf(task);
-              }
-              return null;
-            },
           ),
         );
       },
