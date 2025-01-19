@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/models/task/task.dart';
+import 'package:uuid/uuid.dart'; // For generating unique IDs
 
 class AddTaskDialog extends StatelessWidget {
   const AddTaskDialog({
@@ -65,9 +66,23 @@ class AddTaskDialog extends StatelessWidget {
                   onPressed: () {
                     final newTask = taskController.text;
                     if (newTask.isNotEmpty) {
-                      var addTask = Task(taskTitle: newTask);
-                      taskBox.add(addTask);
-                      Navigator.of(context).pop(); // Закрыть диалог
+                      // Generate a unique ID for the new task
+                      final taskId = const Uuid().v4();
+
+                      // Create a new task with the generated ID
+                      final addTask = Task(
+                        id: taskId, // Pass the unique ID
+                        taskTitle: newTask,
+                        isCompleted: false,
+                        taskDescription: '',
+                        priority: 0, // Default priority
+                      );
+
+                      // Add the task to the Hive box using its ID
+                      taskBox.put(taskId, addTask);
+
+                      // Close the dialog
+                      Navigator.of(context).pop();
                     }
                   },
                   child: const Text(
