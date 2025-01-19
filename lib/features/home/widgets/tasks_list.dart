@@ -5,9 +5,7 @@ import 'package:pixel_todo/features/home/widgets/task_item.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class TasksList extends StatefulWidget {
-  const TasksList({
-    super.key,
-  });
+  const TasksList({super.key});
 
   @override
   State<TasksList> createState() => _SliverTasksState();
@@ -26,15 +24,26 @@ class _SliverTasksState extends State<TasksList> {
             child: Center(child: Text('Нет задач')),
           );
         }
+
+        // Fetch all tasks and sort them by priority
+        final List<Task> tasks = box.values.toList()
+          ..sort((a, b) => a.priority.compareTo(b.priority));
+
         return SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
-              final task = box.getAt(index);
-              return task != null
-                  ? TaskItem(task: task, index: index)
-                  : Container();
+              final task = tasks[index];
+              return TaskItem(task: task, index: index);
             },
-            childCount: box.length,
+            childCount: tasks.length,
+            findChildIndexCallback: (key) {
+              if (key is ValueKey<int>) {
+                final taskId = key.value;
+                final task = tasks.firstWhere((task) => task.id == taskId);
+                return tasks.indexOf(task);
+              }
+              return null;
+            },
           ),
         );
       },
