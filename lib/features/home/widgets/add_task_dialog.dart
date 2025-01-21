@@ -35,6 +35,9 @@ class AddTaskDialog extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                const SizedBox(
+                  height: 20,
+                ),
                 const Text(
                   "Новая задача",
                   style: TextStyle(
@@ -62,6 +65,9 @@ class AddTaskDialog extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.greenAccent,
+                  ),
                   onPressed: () {
                     final newTask = taskController.text;
                     if (newTask.isNotEmpty) {
@@ -90,6 +96,9 @@ class AddTaskDialog extends StatelessWidget {
                       fontFamily: "TeletactileRus",
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
               ],
             ),
