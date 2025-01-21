@@ -8,13 +8,12 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   void _showCustomDialog(BuildContext context) {
-    final TextEditingController taskController = TextEditingController();
     final Box<Task> taskBox = GetIt.I<Box<Task>>();
     showDialog(
       barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
-        return AddTaskDialog(taskController: taskController, taskBox: taskBox);
+        return AddTaskDialog();
       },
     );
   }
