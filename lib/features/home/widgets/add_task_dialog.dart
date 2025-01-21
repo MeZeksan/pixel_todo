@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/models/task/task.dart';
 import 'package:uuid/uuid.dart'; // For generating unique IDs
 
 class AddTaskDialog extends StatelessWidget {
-  const AddTaskDialog({
+  AddTaskDialog({
     super.key,
-    required this.taskController,
-    required this.taskBox,
   });
 
-  final TextEditingController taskController;
-  final Box<Task> taskBox;
+  final TextEditingController taskController = TextEditingController();
+  final Box<Task> taskBox = GetIt.I<Box<Task>>();
 
   @override
   Widget build(BuildContext context) {
