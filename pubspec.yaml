@@ -24,6 +24,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/stub_hero.png
+    - assets/images/delete_task.png
 
     - assets/images/easy.png
     - assets/images/medium.png

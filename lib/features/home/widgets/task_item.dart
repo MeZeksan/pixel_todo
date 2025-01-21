@@ -94,8 +94,11 @@ class TaskItem extends StatelessWidget {
             Positioned(
               right: 16,
               child: IconButton(
-                icon: const Icon(Icons.delete,
-                    color: Color.fromARGB(255, 65, 65, 65)),
+                icon: Image.asset(
+                  'assets/images/delete_task.png',
+                  width: 25,
+                  height: 25,
+                ),
                 onPressed: () {
                   // Удаление задачи по id
                   taskBox.delete(task.id);
