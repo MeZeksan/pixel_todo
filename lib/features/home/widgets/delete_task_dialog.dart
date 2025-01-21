@@ -33,6 +33,9 @@ class DeleteTaskDialog extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                const SizedBox(
+                  height: 20,
+                ),
                 const Text(
                   "Вы точно хотите удалить эту задачу?",
                   textAlign: TextAlign.center,
@@ -79,17 +82,10 @@ class DeleteTaskDialog extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
               ],
-            ),
-          ),
-          Positioned(
-            top: 8,
-            right: 8,
-            child: IconButton(
-              icon: const Icon(Icons.close, color: Colors.black),
-              onPressed: () {
-                Navigator.of(context).pop(); // Закрыть диалог
-              },
             ),
           ),
         ],
