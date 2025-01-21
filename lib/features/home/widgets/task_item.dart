@@ -3,6 +3,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/features/task_detail/view/view.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
+import 'widgets.dart';
+
 class TaskItem extends StatelessWidget {
   final Task task;
 
@@ -100,8 +102,7 @@ class TaskItem extends StatelessWidget {
                   height: 25,
                 ),
                 onPressed: () {
-                  // Удаление задачи по id
-                  taskBox.delete(task.id);
+                  _showDeleteDialog(context, task);
                 },
               ),
             ),
@@ -110,4 +111,18 @@ class TaskItem extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showDeleteDialog(
+  BuildContext context,
+  Task task,
+) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return DeleteTaskDialog(
+        task: task,
+      );
+    },
+  );
 }
