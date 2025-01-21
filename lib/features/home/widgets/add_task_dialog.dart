@@ -107,7 +107,11 @@ class AddTaskDialog extends StatelessWidget {
             top: 8,
             right: 8,
             child: IconButton(
-              icon: const Icon(Icons.close, color: Colors.black),
+              icon: Image.asset(
+                'assets/images/delete_task.png',
+                width: 25,
+                height: 25,
+              ),
               onPressed: () {
                 Navigator.of(context).pop(); // Закрыть диалог
               },
