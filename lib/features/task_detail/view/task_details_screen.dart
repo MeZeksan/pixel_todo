@@ -157,11 +157,11 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   _buildPriorityOption(
-                      0, 'assets/images/easy.png'), // Low priority
+                      0, 'assets/images/low_priority.png'), // Low priority
+                  _buildPriorityOption(1,
+                      'assets/images/medium_priority.png'), // medium_priority priority
                   _buildPriorityOption(
-                      1, 'assets/images/medium.png'), // Medium priority
-                  _buildPriorityOption(
-                      2, 'assets/images/hard.png'), // High priority
+                      2, 'assets/images/top_priority.png'), // High priority
                 ],
               ),
             ],
