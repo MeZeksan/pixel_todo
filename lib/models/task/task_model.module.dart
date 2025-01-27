@@ -21,6 +21,7 @@ class Task {
 
   @HiveField(5)
   int difficulty;
+
   // @HiveField(6)    // пока что в долгий ящик
   // DateTime dueDate;
 

@@ -30,10 +30,10 @@ flutter:
     - assets/images/medium_priority.png
     - assets/images/top_priority.png
 
-    - assets/images/easy_difficult.png
-    - assets/images/medium_difficult.png
-    - assets/images/hard_difficult.png
-    - assets/images/insane_difficult.png
+    - assets/images/easy_difficulty.png
+    - assets/images/medium_difficulty.png
+    - assets/images/hard_difficulty.png
+    - assets/images/insane_difficulty.png
 
     - assets/images/pergament.png
     - assets/images/feather.png
