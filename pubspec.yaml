@@ -29,6 +29,12 @@ flutter:
     - assets/images/low_priority.png
     - assets/images/medium_priority.png
     - assets/images/top_priority.png
+
+    - assets/images/easy_difficult.png
+    - assets/images/medium_difficult.png
+    - assets/images/hard_difficult.png
+    - assets/images/insane_difficult.png
+
     - assets/images/pergament.png
     - assets/images/feather.png
     - assets/images/wooden_background_desk.png
