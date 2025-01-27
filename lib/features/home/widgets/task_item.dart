@@ -70,10 +70,24 @@ class TaskItem extends StatelessWidget {
             Positioned(
               // Добавляем изображение в зависимости от приоритета
               left: 50,
-              child: Image.asset(
-                getPriorityImage(task.priority),
-                width: 25,
-                height: 25,
+              child: Column(
+                children: [
+                  Image.asset(
+                    getPriorityImage(task.priority),
+                    width: 25,
+                    height: 25,
+                  ),
+                  const SizedBox(
+                    height: 7,
+                  ),
+
+                  //TODO замениить на сложность
+                  Image.asset(
+                    getPriorityImage(task.priority),
+                    width: 25,
+                    height: 25,
+                  ),
+                ],
               ),
             ),
             Positioned(
