@@ -14,20 +14,6 @@ class TaskItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final Box<Task> taskBox = Hive.box<Task>('todo_box_name');
 
-    // Функция для выбора картинки в зависимости от приоритета
-    String getPriorityImage(int priority) {
-      switch (priority) {
-        case 0:
-          return 'assets/images/easy.png'; // Изображение для низкого приоритета
-        case 1:
-          return 'assets/images/medium.png'; // Изображение для среднего приоритета
-        case 2:
-          return 'assets/images/hard.png'; // Изображение для высокого приоритета
-        default:
-          return 'assets/images/catbox.png'; // По умолчанию низкий приоритет
-      }
-    }
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: GestureDetector(
@@ -57,12 +43,12 @@ class TaskItem extends StatelessWidget {
                 onChanged: (value) {
                   // Обновление задачи по id
                   final updatedTask = Task(
-                    id: task.id,
-                    taskTitle: task.taskTitle,
-                    isCompleted: value ?? false,
-                    taskDescription: task.taskDescription,
-                    priority: task.priority,
-                  );
+                      id: task.id,
+                      taskTitle: task.taskTitle,
+                      isCompleted: value ?? false,
+                      taskDescription: task.taskDescription,
+                      priority: task.priority,
+                      difficulty: task.difficulty);
                   taskBox.put(task.id, updatedTask);
                 },
               ),
@@ -83,7 +69,7 @@ class TaskItem extends StatelessWidget {
 
                   //TODO замениить на сложность
                   Image.asset(
-                    getPriorityImage(task.priority),
+                    getDiffucultyImage(task.difficulty),
                     width: 25,
                     height: 25,
                   ),
@@ -124,6 +110,36 @@ class TaskItem extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+// Функция для выбора картинки в зависимости от приоритета
+String getPriorityImage(int priority) {
+  switch (priority) {
+    case 0:
+      return 'assets/images/low_priority.png'; // Изображение для низкого приоритета
+    case 1:
+      return 'assets/images/medium_priority.png'; // Изображение для среднего приоритета
+    case 2:
+      return 'assets/images/top_priority.png'; // Изображение для высокого приоритета
+    default:
+      return 'assets/images/catbox.png'; // По умолчанию низкий приоритет
+  }
+}
+
+// Функция для выбора картинки в зависимости от приоритета
+String getDiffucultyImage(int difficulty) {
+  switch (difficulty) {
+    case 0:
+      return 'assets/images/easy_difficulty.png';
+    case 1:
+      return 'assets/images/medium_difficulty.png';
+    case 2:
+      return 'assets/images/hard_difficulty.png';
+    case 3:
+      return 'assets/images/insane_difficulty.png';
+    default:
+      return 'assets/images/easy_difficulty.png'; // По умолчанию низкий приоритет
   }
 }
 
