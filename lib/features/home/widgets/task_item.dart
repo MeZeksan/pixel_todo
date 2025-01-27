@@ -69,7 +69,7 @@ class TaskItem extends StatelessWidget {
 
                   //TODO замениить на сложность
                   Image.asset(
-                    getPriorityImage(task.priority),
+                    getDiffucultyImage(task.difficulty),
                     width: 25,
                     height: 25,
                   ),
