@@ -17,47 +17,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   late String _taskDescription;
   late bool _isCompleted;
   late int _priority;
-
-  @override
-  void initState() {
-    super.initState();
-    _taskTitle = widget.task.taskTitle;
-    _taskDescription = widget.task.taskDescription;
-    _isCompleted = widget.task.isCompleted;
-    _priority = widget.task.priority;
-  }
-
-  void _saveTask() {
-    final taskBox = Hive.box<Task>('todo_box_name');
-    final updatedTask = Task(
-      id: widget.task.id, // Все так же используем тот же айдишник
-      taskTitle: _taskTitle,
-      isCompleted: _isCompleted,
-      taskDescription: _taskDescription,
-      priority: _priority,
-    );
-    taskBox.put(widget.task.id, updatedTask);
-    Navigator.pop(context);
-  }
-
-  Widget _buildPriorityOption(int priorityLevel, String imagePath) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _priority = priorityLevel;
-        });
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          border: _priority == priorityLevel
-              ? Border.all(color: Colors.blue, width: 3)
-              : null,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Image.asset(imagePath, width: 50, height: 50),
-      ),
-    );
-  }
+  late int _difficulty;
 
   @override
   Widget build(BuildContext context) {
@@ -164,9 +124,93 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                       2, 'assets/images/top_priority.png'), // High priority
                 ],
               ),
+              const SizedBox(height: 16),
+              const Text(
+                'Сложность:',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontFamily: "TeletactileRus",
+                  fontSize: 14,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildDifficultyOption(
+                      0, 'assets/images/easy_difficulty.png'),
+                  _buildDifficultyOption(
+                      1, 'assets/images/medium_difficulty.png'),
+                  _buildDifficultyOption(
+                      2, 'assets/images/hard_difficulty.png'),
+                  _buildDifficultyOption(
+                      3, 'assets/images/insane_difficulty.png'),
+                ],
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _taskTitle = widget.task.taskTitle;
+    _taskDescription = widget.task.taskDescription;
+    _isCompleted = widget.task.isCompleted;
+    _priority = widget.task.priority;
+    _difficulty = widget.task.difficulty;
+  }
+
+  void _saveTask() {
+    final taskBox = Hive.box<Task>('todo_box_name');
+    final updatedTask = Task(
+      id: widget.task.id, // Все так же используем тот же айдишник
+      taskTitle: _taskTitle,
+      isCompleted: _isCompleted,
+      taskDescription: _taskDescription,
+      priority: _priority,
+      difficulty: _difficulty,
+    );
+    taskBox.put(widget.task.id, updatedTask);
+    Navigator.pop(context);
+  }
+
+  Widget _buildPriorityOption(int priorityLevel, String imagePath) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _priority = priorityLevel;
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: _priority == priorityLevel
+              ? Border.all(color: Colors.blue, width: 3)
+              : null,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Image.asset(imagePath, width: 50, height: 50),
+      ),
+    );
+  }
+
+  Widget _buildDifficultyOption(int difficultyLevel, String imagePath) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _difficulty = difficultyLevel;
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: _difficulty == difficultyLevel
+              ? Border.all(color: Colors.blue, width: 3)
+              : null,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Image.asset(imagePath, width: 50, height: 50),
       ),
     );
   }

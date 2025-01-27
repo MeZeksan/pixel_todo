@@ -43,12 +43,12 @@ class TaskItem extends StatelessWidget {
                 onChanged: (value) {
                   // Обновление задачи по id
                   final updatedTask = Task(
-                    id: task.id,
-                    taskTitle: task.taskTitle,
-                    isCompleted: value ?? false,
-                    taskDescription: task.taskDescription,
-                    priority: task.priority,
-                  );
+                      id: task.id,
+                      taskTitle: task.taskTitle,
+                      isCompleted: value ?? false,
+                      taskDescription: task.taskDescription,
+                      priority: task.priority,
+                      difficulty: task.difficulty);
                   taskBox.put(task.id, updatedTask);
                 },
               ),
