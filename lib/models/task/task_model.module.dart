@@ -19,7 +19,9 @@ class Task {
   @HiveField(4)
   int priority; // Приоритет задачи (0 - низкий, 1 - средний, 2 - высокий)
 
-  // @HiveField(5)    // пока что в долгий ящик
+  @HiveField(5)
+  int difficulty;
+  // @HiveField(6)    // пока что в долгий ящик
   // DateTime dueDate;
 
   Task({
@@ -28,6 +30,7 @@ class Task {
     this.isCompleted = false,
     this.taskDescription = '',
     this.priority = 0,
+    this.difficulty = 0,
   });
 
   // Переписка оператора  == для задач
