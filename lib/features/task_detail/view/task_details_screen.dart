@@ -239,10 +239,13 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
 
   Future<void> _selectDueDate() async {
     final DateTime? pickedDate = await showDatePicker(
+        cancelText: 'Отменить',
+        confirmText: 'Подтвердить',
         context: context,
         initialDate: _dueDate,
+        //добавить удаление даты
         firstDate: DateTime(2025),
-        lastDate: DateTime(2051));
+        lastDate: DateTime(2052));
     if (pickedDate != null && pickedDate != _dueDate) {
       setState(() {
         _dueDate = pickedDate;
