@@ -25,14 +25,14 @@ class Task {
   @HiveField(6)
   DateTime? dueDate;
 
-  Task({
-    required this.id,
-    this.taskTitle = '',
-    this.isCompleted = false,
-    this.taskDescription = '',
-    this.priority = 0,
-    this.difficulty = 0,
-  });
+  Task(
+      {required this.id,
+      this.taskTitle = '',
+      this.isCompleted = false,
+      this.taskDescription = '',
+      this.priority = 0,
+      this.difficulty = 0,
+      this.dueDate = null});
 
   // Переписка оператора  == для задач
   @override

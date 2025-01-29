@@ -23,7 +23,8 @@ class TaskAdapter extends TypeAdapter<Task> {
       taskDescription: fields[3] as String,
       priority: fields[4] as int,
       difficulty: fields[5] as int,
-    )..dueDate = fields[6] as DateTime?;
+      dueDate: fields[6] as DateTime?,
+    );
   }
 
   @override
