@@ -5,7 +5,7 @@ part 'task_model.module.g.dart';
 @HiveType(typeId: 0)
 class Task {
   @HiveField(0)
-  final String id; // Unique identifier for the task
+  final String id;
 
   @HiveField(1)
   String taskTitle;
@@ -22,8 +22,8 @@ class Task {
   @HiveField(5)
   int difficulty;
 
-  // @HiveField(6)    // пока что в долгий ящик
-  // DateTime dueDate;
+  @HiveField(6)
+  DateTime? dueDate;
 
   Task({
     required this.id,
