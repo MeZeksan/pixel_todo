@@ -32,7 +32,7 @@ class Task {
       this.taskDescription = '',
       this.priority = 0,
       this.difficulty = 0,
-      this.dueDate = null});
+      this.dueDate});
 
   // Переписка оператора  == для задач
   @override
