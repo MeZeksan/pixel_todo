@@ -66,8 +66,6 @@ class TaskItem extends StatelessWidget {
                   const SizedBox(
                     height: 7,
                   ),
-
-                  //TODO замениить на сложность
                   Image.asset(
                     getDiffucultyImage(task.difficulty),
                     width: 25,
@@ -93,6 +91,21 @@ class TaskItem extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned(
+                left: 80,
+                bottom: 18,
+                child: Text(
+                  task.dueDate == null
+                      ? ''
+                      : "Дата: ${task.dueDate!.toString().split(' ')[0]}",
+                  style: TextStyle(
+                    color: const Color.fromARGB(255, 81, 81, 81),
+                    fontSize: 14,
+                    fontFamily: "TeletactileRus",
+                    decoration:
+                        task.isCompleted ? TextDecoration.lineThrough : null,
+                  ),
+                )),
             Positioned(
               right: 16,
               child: IconButton(
