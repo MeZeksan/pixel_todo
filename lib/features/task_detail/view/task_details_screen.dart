@@ -146,6 +146,24 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                       3, 'assets/images/insane_difficulty.png'),
                 ],
               ),
+              const SizedBox(height: 16),
+              GestureDetector(
+                onTap: () {},
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Icon(Icons.calendar_month),
+                    Text(
+                      "Выбранная дата",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontFamily: "TeletactileRus",
+                        fontSize: 14,
+                      ),
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),
