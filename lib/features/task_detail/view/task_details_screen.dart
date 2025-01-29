@@ -18,6 +18,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   late bool _isCompleted;
   late int _priority;
   late int _difficulty;
+  DateTime? _dueDate;
 
   @override
   Widget build(BuildContext context) {
@@ -148,14 +149,16 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
               ),
               const SizedBox(height: 16),
               GestureDetector(
-                onTap: () {},
-                child: const Row(
+                onTap: _selectDueDate,
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Icon(Icons.calendar_month),
+                    const Icon(Icons.calendar_month),
                     Text(
-                      "Выбранная дата",
-                      style: TextStyle(
+                      _dueDate == null
+                          ? "Выбрать дату"
+                          : "Дата: ${_dueDate!.toString().split(' ')[0]}",
+                      style: const TextStyle(
                         color: Color.fromARGB(255, 0, 0, 0),
                         fontFamily: "TeletactileRus",
                         fontSize: 14,
@@ -179,18 +182,19 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     _isCompleted = widget.task.isCompleted;
     _priority = widget.task.priority;
     _difficulty = widget.task.difficulty;
+    _dueDate = widget.task.dueDate;
   }
 
   void _saveTask() {
     final taskBox = Hive.box<Task>('todo_box_name');
     final updatedTask = Task(
-      id: widget.task.id, // Все так же используем тот же айдишник
-      taskTitle: _taskTitle,
-      isCompleted: _isCompleted,
-      taskDescription: _taskDescription,
-      priority: _priority,
-      difficulty: _difficulty,
-    );
+        id: widget.task.id, // Все так же используем тот же айдишник
+        taskTitle: _taskTitle,
+        isCompleted: _isCompleted,
+        taskDescription: _taskDescription,
+        priority: _priority,
+        difficulty: _difficulty,
+        dueDate: _dueDate);
     taskBox.put(widget.task.id, updatedTask);
     Navigator.pop(context);
   }
@@ -231,5 +235,18 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
         child: Image.asset(imagePath, width: 50, height: 50),
       ),
     );
+  }
+
+  Future<void> _selectDueDate() async {
+    final DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: _dueDate,
+        firstDate: DateTime(2025),
+        lastDate: DateTime(2051));
+    if (pickedDate != null && pickedDate != _dueDate) {
+      setState(() {
+        _dueDate = pickedDate;
+      });
+    }
   }
 }
