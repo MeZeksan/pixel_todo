@@ -48,7 +48,8 @@ class TaskItem extends StatelessWidget {
                       isCompleted: value ?? false,
                       taskDescription: task.taskDescription,
                       priority: task.priority,
-                      difficulty: task.difficulty);
+                      difficulty: task.difficulty,
+                      dueDate: task.dueDate);
                   taskBox.put(task.id, updatedTask);
                 },
               ),
