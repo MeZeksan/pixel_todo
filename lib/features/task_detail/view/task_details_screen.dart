@@ -18,6 +18,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   late bool _isCompleted;
   late int _priority;
   late int _difficulty;
+  DateTime? _dueDate;
 
   @override
   Widget build(BuildContext context) {
@@ -146,6 +147,61 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                       3, 'assets/images/insane_difficulty.png'),
                 ],
               ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    flex: 3,
+                    child: GestureDetector(
+                      onTap: _selectDueDate,
+                      child: Container(
+                        height: 35,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(59, 107, 118, 127),
+                          border: Border.all(
+                            color: const Color.fromARGB(64, 107, 118, 127),
+                            width: 3,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            const Icon(
+                              Icons.calendar_month,
+                            ),
+                            Text(
+                              _dueDate == null
+                                  ? "Выбрать дату"
+                                  : "Дата: ${_dueDate!.toString().split(' ')[0]}",
+                              style: const TextStyle(
+                                color: Color.fromARGB(255, 0, 0, 0),
+                                fontFamily: "TeletactileRus",
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _dueDate = null;
+                        });
+                      },
+                      icon: Image.asset(
+                        'assets/images/delete_task.png',
+                        width: 25,
+                        height: 25,
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
@@ -161,18 +217,19 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     _isCompleted = widget.task.isCompleted;
     _priority = widget.task.priority;
     _difficulty = widget.task.difficulty;
+    _dueDate = widget.task.dueDate;
   }
 
   void _saveTask() {
     final taskBox = Hive.box<Task>('todo_box_name');
     final updatedTask = Task(
-      id: widget.task.id, // Все так же используем тот же айдишник
-      taskTitle: _taskTitle,
-      isCompleted: _isCompleted,
-      taskDescription: _taskDescription,
-      priority: _priority,
-      difficulty: _difficulty,
-    );
+        id: widget.task.id, // Все так же используем тот же айдишник
+        taskTitle: _taskTitle,
+        isCompleted: _isCompleted,
+        taskDescription: _taskDescription,
+        priority: _priority,
+        difficulty: _difficulty,
+        dueDate: _dueDate);
     taskBox.put(widget.task.id, updatedTask);
     Navigator.pop(context);
   }
@@ -213,5 +270,21 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
         child: Image.asset(imagePath, width: 50, height: 50),
       ),
     );
+  }
+
+  Future<void> _selectDueDate() async {
+    final DateTime? pickedDate = await showDatePicker(
+        cancelText: 'Отменить',
+        confirmText: 'Подтвердить',
+        context: context,
+        initialDate: _dueDate,
+        //добавить удаление даты
+        firstDate: DateTime(2025),
+        lastDate: DateTime(2052));
+    if (pickedDate != null && pickedDate != _dueDate) {
+      setState(() {
+        _dueDate = pickedDate;
+      });
+    }
   }
 }
