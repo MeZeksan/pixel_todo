@@ -148,24 +148,59 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                 ],
               ),
               const SizedBox(height: 16),
-              GestureDetector(
-                onTap: _selectDueDate,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Icon(Icons.calendar_month),
-                    Text(
-                      _dueDate == null
-                          ? "Выбрать дату"
-                          : "Дата: ${_dueDate!.toString().split(' ')[0]}",
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontFamily: "TeletactileRus",
-                        fontSize: 14,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    flex: 3,
+                    child: GestureDetector(
+                      onTap: _selectDueDate,
+                      child: Container(
+                        height: 35,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(59, 107, 118, 127),
+                          border: Border.all(
+                            color: const Color.fromARGB(64, 107, 118, 127),
+                            width: 3,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            const Icon(
+                              Icons.calendar_month,
+                            ),
+                            Text(
+                              _dueDate == null
+                                  ? "Выбрать дату"
+                                  : "Дата: ${_dueDate!.toString().split(' ')[0]}",
+                              style: const TextStyle(
+                                color: Color.fromARGB(255, 0, 0, 0),
+                                fontFamily: "TeletactileRus",
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _dueDate = null;
+                        });
+                      },
+                      icon: Image.asset(
+                        'assets/images/delete_task.png',
+                        width: 25,
+                        height: 25,
+                      ),
+                    ),
+                  ),
+                ],
               )
             ],
           ),
