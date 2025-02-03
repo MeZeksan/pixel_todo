@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/features/home/widgets/widgets.dart';
-import 'package:pixel_todo/models/task/task.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   void _showCustomDialog(BuildContext context) {
-    final Box<Task> taskBox = GetIt.I<Box<Task>>();
     showDialog(
       barrierDismissible: false,
       context: context,
