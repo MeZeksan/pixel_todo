@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
-import 'package:pixel_todo/features/home/service/service.dart';
+import 'package:pixel_todo/features/home/widgets/widgets.dart';
 import 'package:pixel_todo/features/task_detail/view/view.dart';
 import 'package:pixel_todo/models/task/task.dart';
-
-import 'widgets.dart';
 
 class TaskItem extends StatelessWidget {
   final Task task;
@@ -37,108 +33,14 @@ class TaskItem extends StatelessWidget {
               height: 100,
               fit: BoxFit.fill,
             ),
-            Positioned(
-              left: 16,
-              child: Checkbox(
-                activeColor: Colors.deepPurple,
-                checkColor: Colors.lightGreen,
-                value: task.isCompleted,
-                onChanged: (value) {
-                  // Обновление задачи по id
-                  final updatedTask = Task(
-                      id: task.id,
-                      taskTitle: task.taskTitle,
-                      isCompleted: value ?? false,
-                      taskDescription: task.taskDescription,
-                      priority: task.priority,
-                      difficulty: task.difficulty,
-                      dueDate: task.dueDate);
-                  taskBox.put(task.id, updatedTask);
-                },
-              ),
-            ),
-            Positioned(
-              // Добавляем изображение в зависимости от приоритета
-              left: 50,
-              child: Column(
-                children: [
-                  Image.asset(
-                    getPriorityImage(task.priority),
-                    width: 25,
-                    height: 25,
-                  ),
-                  const SizedBox(
-                    height: 7,
-                  ),
-                  Image.asset(
-                    getDiffucultyImage(task.difficulty),
-                    width: 25,
-                    height: 25,
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              left: 80,
-              right: 56,
-              child: Text(
-                task.taskTitle,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                softWrap: true,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontFamily: "TeletactileRus",
-                  decoration:
-                      task.isCompleted ? TextDecoration.lineThrough : null,
-                ),
-              ),
-            ),
-            Positioned(
-                left: 80,
-                bottom: 18,
-                child: Text(
-                  task.dueDate == null
-                      ? ''
-                      : "Дата: ${task.dueDate!.toString().split(' ')[0]}",
-                  style: TextStyle(
-                    color: const Color.fromARGB(255, 81, 81, 81),
-                    fontSize: 14,
-                    fontFamily: "TeletactileRus",
-                    decoration:
-                        task.isCompleted ? TextDecoration.lineThrough : null,
-                  ),
-                )),
-            Positioned(
-              right: 16,
-              child: IconButton(
-                icon: Image.asset(
-                  'assets/images/delete_task.png',
-                  width: 25,
-                  height: 25,
-                ),
-                onPressed: () {
-                  _showDeleteDialog(context, task);
-                },
-              ),
-            ),
+            TaskCheckBox(task: task, taskBox: taskBox),
+            PriorityDifficultyImage(task: task),
+            TaskLabel(task: task),
+            TaskDate(task: task),
+            TaskDeleteButton(task: task),
           ],
         ),
       ),
-    );
-  }
-
-  void _showDeleteDialog(BuildContext context, Task task) {
-    showDialog(
-      context: context,
-      builder: (dialogContext) {
-        return BlocProvider.value(
-          value:
-              BlocProvider.of<HomeBloc>(context), // Передаем существующий BLoC
-          child: DeleteTaskDialog(task: task), // Передаем задачу
-        );
-      },
     );
   }
 }

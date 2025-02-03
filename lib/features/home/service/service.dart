@@ -4,4 +4,5 @@
 
 export 'get_difficulty_image.service.dart';
 export 'get_priority_image.service.dart';
+export 'show_delete_dialog.service.dart';
 export 'task_sort.service.dart';
