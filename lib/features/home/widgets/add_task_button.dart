@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pixel_todo/features/home/widgets/add_task_dialog.dart';
 
 class AddTaskButton extends StatelessWidget {
   const AddTaskButton({
@@ -9,7 +10,7 @@ class AddTaskButton extends StatelessWidget {
       barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
-        return const AddTaskButton();
+        return AddTaskDialog();
       },
     );
   }
