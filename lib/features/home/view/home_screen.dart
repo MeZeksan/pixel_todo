@@ -4,32 +4,11 @@ import 'package:pixel_todo/features/home/widgets/widgets.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  void _showCustomDialog(BuildContext context) {
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (BuildContext context) {
-        return AddTaskDialog();
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _showCustomDialog(context); // Вызов метода показа диалога
-        },
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        child: Image.asset(
-          'assets/images/feather.png',
-          width: 56,
-          height: 56,
-        ),
-      ),
+      floatingActionButton: const AddTaskButton(),
       body: Center(
         child: Column(
           children: [
