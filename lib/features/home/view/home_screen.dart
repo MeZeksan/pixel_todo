@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             Flexible(
               flex: 2,
+              // TODO убрать заглушку с верхним фоном
               child: Container(
                   height: double.maxFinite,
                   color: theme.primaryColor,

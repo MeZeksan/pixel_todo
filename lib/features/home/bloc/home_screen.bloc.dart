@@ -11,7 +11,34 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   HomeBloc(this._taskBox) : super(HomeInitial()) {
     on<LoadTasks>(_onLoadTasks);
-    on<AddTask>(_onAddTasks);
-    on<DeleteTask>(_onDeleteTasks);
+    on<AddTask>(_onAddTask);
+    on<DeleteTask>(_onDeleteTask);
+  }
+
+  //метод для загрузки задач
+  void _onLoadTasks(LoadTasks event, Emitter<HomeState> emit) async {
+    emit(HomeLoading()); //состояние загрузки, индикатор круговой пусть буде
+
+    try {
+      final tasks = _taskBox.values.toList();
+      emit(HomeLoaded(tasks));
+    } catch (e) {
+      emit(HomeError(exception: e));
+    }
+  }
+
+  void _onAddTask(AddTask event, Emitter<HomeState> emit) {
+    if (state is HomeLoaded) {
+      _taskBox.add(event.task);
+      add(LoadTasks()); //после добавления задачи перезагружаем список
+    }
+  }
+
+  //удаление задачи
+  void _onDeleteTask(DeleteTask event, Emitter<HomeState> emit) {
+    if (state is HomeLoaded) {
+      _taskBox.delete(event.taskId);
+      add(LoadTasks());
+    }
   }
 }

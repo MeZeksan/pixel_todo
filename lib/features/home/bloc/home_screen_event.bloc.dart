@@ -4,10 +4,18 @@ abstract class HomeEvent {}
 
 class LoadTasks extends HomeEvent {}
 
-class AddTask extends HomeEvent {}
+class AddTask extends HomeEvent {
+  final Task task;
 
-class DeleteTask extends HomeEvent {}
+  AddTask(this.task);
+}
 
-class UpdateTasks extends HomeEvent {} // к Firebase
+class DeleteTask extends HomeEvent {
+  final String taskId;
+
+  DeleteTask(this.taskId);
+}
+
+class UpdateTask extends HomeEvent {} // к Firebase
 
 class SyncTasks extends HomeEvent {} // к Firebase

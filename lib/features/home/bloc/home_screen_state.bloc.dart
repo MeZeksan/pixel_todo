@@ -6,6 +6,13 @@ class HomeInitial extends HomeState {}
 
 class HomeLoading extends HomeState {}
 
-class HomeLoaded extends HomeState {}
+class HomeLoaded extends HomeState {
+  final List<Task> tasks;
+  HomeLoaded(this.tasks);
+}
 
-class HomeError extends HomeState {}
+class HomeError extends HomeState {
+  final Object? exception;
+
+  HomeError({this.exception});
+}
