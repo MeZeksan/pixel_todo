@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
+import 'package:pixel_todo/features/home/service/service.dart';
 import 'package:pixel_todo/features/task_detail/view/view.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
@@ -127,46 +128,17 @@ class TaskItem extends StatelessWidget {
       ),
     );
   }
-}
 
-// Функция для выбора картинки в зависимости от приоритета
-String getPriorityImage(int priority) {
-  switch (priority) {
-    case 0:
-      return 'assets/images/low_priority.png'; // Изображение для низкого приоритета
-    case 1:
-      return 'assets/images/medium_priority.png'; // Изображение для среднего приоритета
-    case 2:
-      return 'assets/images/top_priority.png'; // Изображение для высокого приоритета
-    default:
-      return 'assets/images/catbox.png'; // По умолчанию низкий приоритет
+  void _showDeleteDialog(BuildContext context, Task task) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return BlocProvider.value(
+          value:
+              BlocProvider.of<HomeBloc>(context), // Передаем существующий BLoC
+          child: DeleteTaskDialog(task: task), // Передаем задачу
+        );
+      },
+    );
   }
-}
-
-// Функция для выбора картинки в зависимости от приоритета
-String getDiffucultyImage(int difficulty) {
-  switch (difficulty) {
-    case 0:
-      return 'assets/images/easy_difficulty.png';
-    case 1:
-      return 'assets/images/medium_difficulty.png';
-    case 2:
-      return 'assets/images/hard_difficulty.png';
-    case 3:
-      return 'assets/images/insane_difficulty.png';
-    default:
-      return 'assets/images/easy_difficulty.png'; // По умолчанию низкий приоритет
-  }
-}
-
-void _showDeleteDialog(BuildContext context, Task task) {
-  showDialog(
-    context: context,
-    builder: (dialogContext) {
-      return BlocProvider.value(
-        value: BlocProvider.of<HomeBloc>(context), // Передаем существующий BLoC
-        child: DeleteTaskDialog(task: task), // Передаем задачу
-      );
-    },
-  );
 }
