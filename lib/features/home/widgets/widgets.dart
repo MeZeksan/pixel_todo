@@ -4,6 +4,7 @@
 
 export 'add_task_button.dart';
 export 'add_task_dialog.dart';
+export 'background_widget.dart';
 export 'delete_task_dialog.dart';
 export 'tasks_list.dart';
 export 'task_item.dart';
