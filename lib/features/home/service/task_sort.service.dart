@@ -1,9 +1,8 @@
 // Сортировка по приоритету и внутри приоритета по дате
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
-List<Task> sortTasksByPriorityAndDueDate(Box<Task> box) {
-  final List<Task> sortedTask = box.values.toList()
+List<Task> sortTasksByPriorityAndDueDate(List<Task> tasks) {
+  final List<Task> sortedTask = tasks
     ..sort((a, b) {
       // Сначала сортируем по приоритету в порядке убывания
       final priorityComparison = b.priority.compareTo(a.priority);

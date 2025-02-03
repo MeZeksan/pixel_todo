@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/features/home/service/service.dart';
 import 'package:pixel_todo/features/home/widgets/task_item.dart';
 import 'package:pixel_todo/models/task/task.dart';
@@ -13,41 +13,52 @@ class TasksList extends StatefulWidget {
 }
 
 class _SliverTasksState extends State<TasksList> {
-  final Box<Task> taskBox = GetIt.I<Box<Task>>();
-
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: taskBox.listenable(),
-      builder: (context, Box<Task> box, _) {
-        if (box.isEmpty) {
-          return const SliverToBoxAdapter(
-            child: Center(
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        if (state is HomeLoaded) {
+          if (state.tasks.isEmpty) {
+            return const SliverToBoxAdapter(
+              child: Center(
                 child: Padding(
-              padding: EdgeInsets.only(top: 60),
-              child: Text(
-                'Нет доступных квестов',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Color.fromARGB(255, 191, 191, 191),
-                  fontFamily: "TeletactileRus",
+                  padding: EdgeInsets.only(top: 60),
+                  child: Text(
+                    'Нет доступных квестов',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 191, 191, 191),
+                      fontFamily: "TeletactileRus",
+                    ),
+                  ),
                 ),
               ),
-            )),
+            );
+          }
+
+          // Сортируем задачи
+          final List<Task> sortedTasks =
+              sortTasksByPriorityAndDueDate(state.tasks);
+
+          // Возвращаем список задач
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final task = sortedTasks[index];
+                return TaskItem(task: task, key: ValueKey(task.id));
+              },
+              childCount: sortedTasks.length,
+            ),
+          );
+        } else if (state is HomeError) {
+          // Показываем сообщение об ошибке
+          return SliverToBoxAdapter(
+            child: Center(child: Text('Ошибка: ${state.toString()}')),
           );
         }
 
-        final List<Task> tasks = sortTasksByPriorityAndDueDate(box);
-
-        return SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              final task = tasks[index];
-              return TaskItem(task: task, key: ValueKey(task.id));
-            },
-            childCount: tasks.length,
-          ),
-        );
+        // Default case
+        return const SliverToBoxAdapter();
       },
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/features/task_detail/view/view.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
@@ -157,15 +159,13 @@ String getDiffucultyImage(int difficulty) {
   }
 }
 
-void _showDeleteDialog(
-  BuildContext context,
-  Task task,
-) {
+void _showDeleteDialog(BuildContext context, Task task) {
   showDialog(
     context: context,
-    builder: (BuildContext context) {
-      return DeleteTaskDialog(
-        task: task,
+    builder: (dialogContext) {
+      return BlocProvider.value(
+        value: BlocProvider.of<HomeBloc>(context), // Передаем существующий BLoC
+        child: DeleteTaskDialog(task: task), // Передаем задачу
       );
     },
   );

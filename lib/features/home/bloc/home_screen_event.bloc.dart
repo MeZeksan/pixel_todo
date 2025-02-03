@@ -13,7 +13,7 @@ class AddTask extends HomeEvent {
 class DeleteTask extends HomeEvent {
   final String taskId;
 
-  DeleteTask(this.taskId);
+  DeleteTask({required this.taskId});
 }
 
 class UpdateTask extends HomeEvent {} // к Firebase

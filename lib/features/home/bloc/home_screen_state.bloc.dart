@@ -8,6 +8,7 @@ class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
   final List<Task> tasks;
+
   HomeLoaded(this.tasks);
 }
 

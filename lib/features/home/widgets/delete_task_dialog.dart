@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class DeleteTaskDialog extends StatelessWidget {
-  DeleteTaskDialog({
-    super.key,
-    required this.task,
-  });
-  final Task task;
-  final Box<Task> taskBox = GetIt.I<Box<Task>>();
+  final Task task; // Задача для удаления
+
+  const DeleteTaskDialog({super.key, required this.task});
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -33,13 +31,11 @@ class DeleteTaskDialog extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  "Вы точно хотите удалить эту задачу?",
+                const SizedBox(height: 20),
+                Text(
+                  "Вы точно хотите удалить задачу\n'${task.taskTitle}'?",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "TeletactileRus",
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -51,7 +47,12 @@ class DeleteTaskDialog extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        taskBox.delete(task.id);
+                        // Отправляем событие DeleteTask в BLoC
+                        context
+                            .read<HomeBloc>()
+                            .add(DeleteTask(taskId: task.id));
+
+                        // Закрываем диалог
                         Navigator.of(context).pop();
                       },
                       style: ElevatedButton.styleFrom(
@@ -67,6 +68,7 @@ class DeleteTaskDialog extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
+                        // Закрываем диалог без удаления
                         Navigator.of(context).pop();
                       },
                       style: ElevatedButton.styleFrom(
@@ -82,9 +84,7 @@ class DeleteTaskDialog extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
               ],
             ),
           ),
