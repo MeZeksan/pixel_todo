@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class TaskCheckBox extends StatelessWidget {
   const TaskCheckBox({
     super.key,
     required this.task,
-    required this.taskBox,
   });
 
   final Task task;
-  final Box<Task> taskBox;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,8 @@ class TaskCheckBox extends StatelessWidget {
               priority: task.priority,
               difficulty: task.difficulty,
               dueDate: task.dueDate);
-          taskBox.put(task.id, updatedTask);
+          //отправляем  событие UpdateTask через Bloc
+          context.read<HomeBloc>().add(UpdateTask(updatedTask));
         },
       ),
     );

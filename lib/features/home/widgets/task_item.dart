@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/features/home/widgets/widgets.dart';
 import 'package:pixel_todo/features/task_detail/view/view.dart';
 import 'package:pixel_todo/models/task/task.dart';
@@ -11,8 +10,6 @@ class TaskItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Box<Task> taskBox = Hive.box<Task>('todo_box_name');
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: GestureDetector(
@@ -33,7 +30,7 @@ class TaskItem extends StatelessWidget {
               height: 100,
               fit: BoxFit.fill,
             ),
-            TaskCheckBox(task: task, taskBox: taskBox),
+            TaskCheckBox(task: task),
             PriorityDifficultyImage(task: task),
             TaskLabel(task: task),
             TaskDate(task: task),
