@@ -12,7 +12,7 @@ class TaskDetailsScreen extends StatefulWidget {
 }
 
 class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
-  //т.к. id не меняем, то и добавлять его нет смысла
+  late String _id;
   late String _taskTitle;
   late String _taskDescription;
   late bool _isCompleted;
@@ -212,6 +212,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   @override
   void initState() {
     super.initState();
+    _id = widget.task.id;
     _taskTitle = widget.task.taskTitle;
     _taskDescription = widget.task.taskDescription;
     _isCompleted = widget.task.isCompleted;
@@ -223,7 +224,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
   void _saveTask() {
     final taskBox = Hive.box<Task>('todo_box_name');
     final updatedTask = Task(
-        id: widget.task.id, // Все так же используем тот же айдишник
+        id: _id, // Все так же используем тот же айдишник
         taskTitle: _taskTitle,
         isCompleted: _isCompleted,
         taskDescription: _taskDescription,
