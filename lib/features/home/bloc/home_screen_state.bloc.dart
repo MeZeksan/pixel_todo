@@ -12,6 +12,7 @@ class HomeLoaded extends HomeState {
   HomeLoaded(this.tasks);
 }
 
+//TODO передавать на экран с ошибкой
 class HomeError extends HomeState {
   final Object? exception;
 

@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
@@ -21,10 +21,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(HomeLoading()); // Состояние загрузки
     try {
       final tasks = _taskBox.values.toList(); // Получаем список задач
-      print('Загружены задачи: $tasks'); // Логирование для отладки
       emit(HomeLoaded(tasks)); // Отправляем список задач в состояние
     } catch (e) {
-      print('Ошибка при загрузке задач: $e'); // Логирование ошибки
       emit(HomeError(exception: e)); // Обработка ошибок
     }
   }
@@ -49,7 +47,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       // После обновления перезагружаем список задач
       add(LoadTasks());
     } catch (e) {
-      print('Ошибка при обновлении задачи: $e');
       emit(HomeError(exception: e));
     }
   }
