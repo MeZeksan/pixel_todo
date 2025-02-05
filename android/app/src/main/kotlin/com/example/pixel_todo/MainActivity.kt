@@ -1,4 +1,4 @@
-package com.example.pixel_todo
+package com.MeZeksna.pixel_todo
 
 import io.flutter.embedding.android.FlutterActivity
 
