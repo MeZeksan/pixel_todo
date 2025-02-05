@@ -9,5 +9,6 @@ class TaskDetailInitial extends TaskDetailState {
 
 class TaskDetailUpdate extends TaskDetailState {
   final Task updatedTask;
-  TaskDetailUpdate(this.updatedTask);
+  final Task taskBox;
+  TaskDetailUpdate(this.updatedTask, this.taskBox);
 }
