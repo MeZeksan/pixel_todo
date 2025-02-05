@@ -4,8 +4,10 @@ import 'package:pixel_todo/models/task/task.dart';
 
 class TaskDetailsScreen extends StatefulWidget {
   final Task task;
+  final Box<Task> taskBox;
 
-  const TaskDetailsScreen({super.key, required this.task});
+  const TaskDetailsScreen(
+      {super.key, required this.task, required this.taskBox});
 
   @override
   _TaskDetailsScreenState createState() => _TaskDetailsScreenState();
@@ -28,7 +30,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.save),
-            onPressed: _saveTask,
+            onPressed: () => _saveTask(taskBox: widget.taskBox),
           ),
         ],
       ),
@@ -221,8 +223,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
     _dueDate = widget.task.dueDate;
   }
 
-  void _saveTask() {
-    final taskBox = Hive.box<Task>('todo_box_name');
+  void _saveTask({required Box<Task> taskBox}) {
     final updatedTask = Task(
         id: _id, // Все так же используем тот же айдишник
         taskTitle: _taskTitle,
