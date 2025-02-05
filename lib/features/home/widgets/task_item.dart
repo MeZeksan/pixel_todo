@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/features/home/widgets/widgets.dart';
 import 'package:pixel_todo/features/task_detail/view/view.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class TaskItem extends StatelessWidget {
   final Task task;
-
-  const TaskItem({super.key, required this.task});
+  final Box<Task> taskBox;
+  const TaskItem({super.key, required this.task, required this.taskBox});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,10 @@ class TaskItem extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => TaskDetailsScreen(task: task),
+              builder: (context) => TaskDetailsScreen(
+                task: task,
+                taskBox: taskBox,
+              ),
             ),
           );
         },

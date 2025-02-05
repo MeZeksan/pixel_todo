@@ -18,7 +18,8 @@ class _SliverTasksState extends State<TasksList> {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state is HomeLoaded) {
-          if (state.tasks.isEmpty) {
+          final tasksList = state.tasks.values.toList();
+          if (tasksList.isEmpty) {
             return const SliverToBoxAdapter(
               child: Center(
                 child: Padding(
@@ -38,14 +39,18 @@ class _SliverTasksState extends State<TasksList> {
 
           // Сортируем задачи
           final List<Task> sortedTasks =
-              sortTasksByPriorityAndDueDate(state.tasks);
+              sortTasksByPriorityAndDueDate(tasksList);
 
           // Возвращаем список задач
           return SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 final task = sortedTasks[index];
-                return TaskItem(task: task, key: ValueKey(task.id));
+                return TaskItem(
+                  task: task,
+                  key: ValueKey(task.id),
+                  taskBox: state.tasks,
+                );
               },
               childCount: sortedTasks.length,
             ),
