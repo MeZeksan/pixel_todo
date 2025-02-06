@@ -21,7 +21,7 @@ class TaskDeleteButton extends StatelessWidget {
           height: 25,
         ),
         onPressed: () {
-          showDeleteDialog(context, task);
+          ShowDeleteDialogService.showDeleteDialog(context, task);
         },
       ),
     );
