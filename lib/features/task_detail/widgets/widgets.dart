@@ -4,3 +4,9 @@
 
 export 'difficulty_option.dart';
 export 'priority_option.dart';
+export 'task_choose_date_widget.dart';
+export 'task_description_field.dart';
+export 'task_difficulty_widget.dart';
+export 'task_prioity_widget.dart';
+export 'task_status_widget.dart';
+export 'task_title_field.dart';
