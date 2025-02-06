@@ -20,7 +20,14 @@ class TaskDetailsScreen extends StatelessWidget {
       create: (context) => TaskDetailBloc(initialTask, taskBox),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Задача'),
+          title: const Text(
+            'Квест',
+            style: TextStyle(
+              color: Color.fromARGB(255, 0, 0, 0),
+              fontFamily: "TeletactileRus",
+              fontSize: 20,
+            ),
+          ),
           actions: [
             Builder(
               builder: (context) {
@@ -50,6 +57,11 @@ class TaskDetailsScreen extends StatelessWidget {
                       onChanged: (value) => context.read<TaskDetailBloc>().add(
                             UpdateTaskTitle(value),
                           ),
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontFamily: "TeletactileRus",
+                        fontSize: 14,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     TextField(
@@ -59,7 +71,7 @@ class TaskDetailsScreen extends StatelessWidget {
                         fontSize: 14,
                       ),
                       decoration: const InputDecoration(
-                        labelText: 'Описание задачи',
+                        labelText: 'Описание квеста',
                         labelStyle: TextStyle(
                           color: Color.fromARGB(255, 0, 0, 0),
                           fontFamily: "TeletactileRus",
@@ -77,7 +89,7 @@ class TaskDetailsScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'Статус задачи:',
+                          'Статус квеста:',
                           style: TextStyle(
                             color: Color.fromARGB(255, 0, 0, 0),
                             fontFamily: "TeletactileRus",
