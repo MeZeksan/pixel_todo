@@ -142,17 +142,25 @@ class TaskDetailsScreen extends StatelessWidget {
                         fontSize: 14,
                       ),
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildDifficultyOption(
-                            context, 0, 'assets/images/easy_difficulty.png'),
-                        _buildDifficultyOption(
-                            context, 1, 'assets/images/medium_difficulty.png'),
-                        _buildDifficultyOption(
-                            context, 2, 'assets/images/hard_difficulty.png'),
-                        _buildDifficultyOption(
-                            context, 3, 'assets/images/insane_difficulty.png'),
+                        DifficultyOption(
+                          difficultyLevel: 0,
+                          imagePath: 'assets/images/easy_difficulty.png',
+                        ),
+                        DifficultyOption(
+                          difficultyLevel: 1,
+                          imagePath: 'assets/images/medium_difficulty.png',
+                        ),
+                        DifficultyOption(
+                          difficultyLevel: 2,
+                          imagePath: 'assets/images/hard_difficulty.png',
+                        ),
+                        DifficultyOption(
+                          difficultyLevel: 3,
+                          imagePath: 'assets/images/insane_difficulty.png',
+                        ),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -214,28 +222,6 @@ class TaskDetailsScreen extends StatelessWidget {
             );
           },
         ),
-      ),
-    );
-  }
-
-  Widget _buildDifficultyOption(
-      BuildContext context, int difficultyLevel, String imagePath) {
-    return GestureDetector(
-      onTap: () => context.read<TaskDetailBloc>().add(
-            UpdateTaskDifficulty(difficultyLevel),
-          ),
-      child: BlocBuilder<TaskDetailBloc, TaskDetailState>(
-        builder: (context, state) {
-          return Container(
-            decoration: BoxDecoration(
-              border: state.task.difficulty == difficultyLevel
-                  ? Border.all(color: Colors.blue, width: 3)
-                  : null,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Image.asset(imagePath, width: 50, height: 50),
-          );
-        },
       ),
     );
   }
