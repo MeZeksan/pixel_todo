@@ -4,13 +4,32 @@ import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/features/task_detail/bloc/task_detail.bloc.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
-class TaskDescriptionField extends StatelessWidget {
+class TaskDescriptionField extends StatefulWidget {
   const TaskDescriptionField({
     super.key,
     required this.task,
   });
 
   final Task task;
+
+  @override
+  _TaskDescriptionFieldState createState() => _TaskDescriptionFieldState();
+}
+
+class _TaskDescriptionFieldState extends State<TaskDescriptionField> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.task.taskDescription);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +42,7 @@ class TaskDescriptionField extends StatelessWidget {
           fontFamily: "TeletactileRus",
         ),
       ),
-      controller: TextEditingController(text: task.taskDescription),
+      controller: _controller,
       maxLines: 10,
       onChanged: (value) => context.read<TaskDetailBloc>().add(
             UpdateTaskDescription(value),
