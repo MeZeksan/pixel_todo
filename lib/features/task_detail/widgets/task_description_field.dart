@@ -17,7 +17,12 @@ class TaskDescriptionField extends StatelessWidget {
     return TextField(
       style: AppStyles.defaultTextStyle,
       decoration: const InputDecoration(
-          labelText: 'Описание квеста', labelStyle: AppStyles.bigHintStyle),
+        labelText: 'Описание квеста',
+        labelStyle: TextStyle(
+          color: Color.fromARGB(255, 0, 0, 0),
+          fontFamily: "TeletactileRus",
+        ),
+      ),
       controller: TextEditingController(text: task.taskDescription),
       maxLines: 10,
       onChanged: (value) => context.read<TaskDetailBloc>().add(
