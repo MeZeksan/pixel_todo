@@ -39,7 +39,7 @@ class _SliverTasksState extends State<TasksList> {
 
           // Сортируем задачи
           final List<Task> sortedTasks =
-              sortTasksByPriorityAndDueDate(tasksList);
+              TaskSortService.sortTasksByPriorityAndDueDate(tasksList);
 
           // Возвращаем список задач
           return SliverList(
