@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/features/task_detail/bloc/task_detail.bloc.dart';
 import 'package:pixel_todo/features/task_detail/service/service.dart';
 import 'package:pixel_todo/models/task/task.dart';
@@ -35,15 +36,10 @@ class TaskChooseDateWidget extends StatelessWidget {
                 children: [
                   const Icon(Icons.calendar_month),
                   Text(
-                    task.dueDate == null
-                        ? "Выбрать дату"
-                        : "Дата: ${task.dueDate!.toString().split(' ')[0]}",
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontFamily: "TeletactileRus",
-                      fontSize: 14,
-                    ),
-                  ),
+                      task.dueDate == null
+                          ? "Выбрать дату"
+                          : "Дата: ${task.dueDate!.toString().split(' ')[0]}",
+                      style: AppStyles.defaultTextStyle),
                 ],
               ),
             ),

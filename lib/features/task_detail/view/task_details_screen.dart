@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/features/task_detail/bloc/task_detail.bloc.dart';
 import 'package:pixel_todo/features/task_detail/widgets/widgets.dart';
 import 'package:pixel_todo/models/task/task.dart';
@@ -36,25 +37,11 @@ class TaskDetailsScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     TaskStatusWidget(task: task),
                     const SizedBox(height: 16),
-                    const Text(
-                      'Приоритет:',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontFamily: "TeletactileRus",
-                        fontSize: 14,
-                      ),
-                    ),
+                    const Text('Приоритет:', style: AppStyles.defaultTextStyle),
                     const SizedBox(height: 8),
                     const TaskPriorityWidget(),
                     const SizedBox(height: 16),
-                    const Text(
-                      'Сложность:',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontFamily: "TeletactileRus",
-                        fontSize: 14,
-                      ),
-                    ),
+                    const Text('Сложность:', style: AppStyles.defaultTextStyle),
                     const TaskDifficultyWidget(),
                     const SizedBox(height: 16),
                     TaskChooseDateWidget(task: task)

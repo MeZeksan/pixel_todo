@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/features/home/service/service.dart';
 import 'package:pixel_todo/features/home/widgets/task_item.dart';
@@ -24,14 +25,8 @@ class _SliverTasksState extends State<TasksList> {
               child: Center(
                 child: Padding(
                   padding: EdgeInsets.only(top: 60),
-                  child: Text(
-                    'Нет доступных квестов',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Color.fromARGB(255, 191, 191, 191),
-                      fontFamily: "TeletactileRus",
-                    ),
-                  ),
+                  child: Text('Нет доступных квестов',
+                      style: AppStyles.bigHintStyle),
                 ),
               ),
             );

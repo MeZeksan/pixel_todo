@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
@@ -32,15 +33,8 @@ class DeleteTaskDialog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(height: 20),
-                Text(
-                  "Вы точно хотите удалить задачу\n'${task.taskTitle}'?",
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontFamily: "TeletactileRus",
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Text("Вы точно хотите удалить задачу\n'${task.taskTitle}'?",
+                    textAlign: TextAlign.center, style: AppStyles.bigTextStyle),
                 const SizedBox(height: 24),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
