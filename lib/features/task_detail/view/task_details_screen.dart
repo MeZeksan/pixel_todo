@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/features/task_detail/bloc/task_detail.bloc.dart';
+import 'package:pixel_todo/features/task_detail/widgets/widgets.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class TaskDetailsScreen extends StatelessWidget {
@@ -115,15 +116,21 @@ class TaskDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildPriorityOption(
-                            context, 0, 'assets/images/low_priority.png'),
-                        _buildPriorityOption(
-                            context, 1, 'assets/images/medium_priority.png'),
-                        _buildPriorityOption(
-                            context, 2, 'assets/images/top_priority.png'),
+                        PriorityOption(
+                          priorityLevel: 0,
+                          imagePath: 'assets/images/low_priority.png',
+                        ),
+                        PriorityOption(
+                          priorityLevel: 1,
+                          imagePath: 'assets/images/medium_priority.png',
+                        ),
+                        PriorityOption(
+                          priorityLevel: 2,
+                          imagePath: 'assets/images/top_priority.png',
+                        ),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -207,28 +214,6 @@ class TaskDetailsScreen extends StatelessWidget {
             );
           },
         ),
-      ),
-    );
-  }
-
-  Widget _buildPriorityOption(
-      BuildContext context, int priorityLevel, String imagePath) {
-    return GestureDetector(
-      onTap: () => context.read<TaskDetailBloc>().add(
-            UpdateTaskPriority(priorityLevel),
-          ),
-      child: BlocBuilder<TaskDetailBloc, TaskDetailState>(
-        builder: (context, state) {
-          return Container(
-            decoration: BoxDecoration(
-              border: state.task.priority == priorityLevel
-                  ? Border.all(color: Colors.blue, width: 3)
-                  : null,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Image.asset(imagePath, width: 50, height: 50),
-          );
-        },
       ),
     );
   }
