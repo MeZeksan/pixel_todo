@@ -1,14 +1,26 @@
-// part of 'task_detail.bloc.dart';
+part of 'task_detail.bloc.dart';
 
-// abstract class TaskDetailState {}
+abstract class TaskDetailState {
+  const TaskDetailState();
 
-// class TaskDetailInitial extends TaskDetailState {
-//   final Task task;
-//   TaskDetailInitial(this.task);
-// }
+  // Добавляем геттер task в абстрактный класс
+  Task get task;
+}
 
-// class TaskDetailUpdate extends TaskDetailState {
-//   final Task updatedTask;
-//   final Task taskBox;
-//   TaskDetailUpdate(this.updatedTask, this.taskBox);
-// }
+class TaskDetailInitial extends TaskDetailState {
+  final Task _task;
+
+  const TaskDetailInitial(this._task);
+
+  @override
+  Task get task => _task; // Реализация геттера
+}
+
+class TaskDetailUpdated extends TaskDetailState {
+  final Task _task;
+
+  const TaskDetailUpdated(this._task);
+
+  @override
+  Task get task => _task; // Реализация геттера
+}
