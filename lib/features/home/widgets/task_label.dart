@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class TaskLabel extends StatelessWidget {
@@ -14,18 +15,11 @@ class TaskLabel extends StatelessWidget {
     return Positioned(
       left: 80,
       right: 56,
-      child: Text(
-        task.taskTitle,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-        softWrap: true,
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 14,
-          fontFamily: "TeletactileRus",
-          decoration: task.isCompleted ? TextDecoration.lineThrough : null,
-        ),
-      ),
+      child: Text(task.taskTitle,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          softWrap: true,
+          style: AppStyles.defaultTextStyle),
     );
   }
 }

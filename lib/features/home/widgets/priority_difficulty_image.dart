@@ -18,7 +18,7 @@ class PriorityDifficultyImage extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(
-            getPriorityImage(task.priority),
+            GetPriorityImageService.getPriorityImage(task.priority),
             width: 25,
             height: 25,
           ),
@@ -26,7 +26,7 @@ class PriorityDifficultyImage extends StatelessWidget {
             height: 7,
           ),
           Image.asset(
-            getDiffucultyImage(task.difficulty),
+            GetDifficultyImageService.getDiffucultyImage(task.difficulty),
             width: 25,
             height: 25,
           ),

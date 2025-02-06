@@ -7,11 +7,12 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
-  final List<Task> tasks;
+  final Box<Task> tasks;
 
   HomeLoaded(this.tasks);
 }
 
+//TODO передавать на экран с ошибкой
 class HomeError extends HomeState {
   final Object? exception;
 

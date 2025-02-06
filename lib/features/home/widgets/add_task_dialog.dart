@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/models/task/task.dart';
 import 'package:uuid/uuid.dart'; // For generating unique IDs
@@ -33,21 +34,10 @@ class AddTaskDialog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(height: 20),
-                const Text(
-                  "Новая задача",
-                  style: TextStyle(
-                    fontFamily: "TeletactileRus",
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                const Text("Новая задача", style: AppStyles.bigTextStyle),
                 const SizedBox(height: 16),
                 TextField(
-                  style: const TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),
-                    fontFamily: "TeletactileRus",
-                    fontSize: 14,
-                  ),
+                  style: AppStyles.defaultTextStyle,
                   maxLines: 2,
                   controller: taskController,
                   decoration: const InputDecoration(
@@ -85,13 +75,8 @@ class AddTaskDialog extends StatelessWidget {
                       Navigator.of(context).pop();
                     }
                   },
-                  child: const Text(
-                    "Добавить",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontFamily: "TeletactileRus",
-                    ),
-                  ),
+                  child:
+                      const Text("Добавить", style: AppStyles.defaultTextStyle),
                 ),
                 const SizedBox(height: 20),
               ],
