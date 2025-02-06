@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/features/task_detail/bloc/task_detail.bloc.dart';
+import 'package:pixel_todo/features/task_detail/service/date_picker.service.dart';
 import 'package:pixel_todo/features/task_detail/widgets/widgets.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
@@ -170,7 +171,8 @@ class TaskDetailsScreen extends StatelessWidget {
                         Flexible(
                           flex: 3,
                           child: GestureDetector(
-                            onTap: () => _selectDueDate(context),
+                            onTap: () =>
+                                DatePickerService.selectDueDate(context),
                             child: Container(
                               height: 35,
                               decoration: BoxDecoration(
@@ -224,21 +226,5 @@ class TaskDetailsScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _selectDueDate(BuildContext context) async {
-    final currentTask = context.read<TaskDetailBloc>().state.task;
-    final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: currentTask.dueDate ?? DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2052),
-      cancelText: 'Отменить',
-      confirmText: 'Подтвердить',
-    );
-
-    if (pickedDate != null) {
-      context.read<TaskDetailBloc>().add(UpdateTaskDueDate(pickedDate));
-    }
   }
 }
