@@ -25,16 +25,38 @@ class Task {
   @HiveField(6)
   DateTime? dueDate;
 
-  Task(
-      {required this.id,
-      this.taskTitle = '',
-      this.isCompleted = false,
-      this.taskDescription = '',
-      this.priority = 0,
-      this.difficulty = 0,
-      this.dueDate});
+  Task({
+    required this.id,
+    this.taskTitle = '',
+    this.isCompleted = false,
+    this.taskDescription = '',
+    this.priority = 0,
+    this.difficulty = 0,
+    this.dueDate,
+  });
 
-  // Переписка оператора  == для задач
+  // Метод copyWith для создания копии с изменёнными параметрами
+  Task copyWith({
+    String? id,
+    String? taskTitle,
+    bool? isCompleted,
+    String? taskDescription,
+    int? priority,
+    int? difficulty,
+    DateTime? dueDate,
+  }) {
+    return Task(
+      id: id ?? this.id,
+      taskTitle: taskTitle ?? this.taskTitle,
+      isCompleted: isCompleted ?? this.isCompleted,
+      taskDescription: taskDescription ?? this.taskDescription,
+      priority: priority ?? this.priority,
+      difficulty: difficulty ?? this.difficulty,
+      dueDate: dueDate ?? this.dueDate,
+    );
+  }
+
+  // Переписка оператора == для задач
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
