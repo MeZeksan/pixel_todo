@@ -14,14 +14,14 @@ class PriorityDifficultyImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      left: 50,
+      left: 40,
       child: Column(
         children: [
           // Изображение приоритета
           Image.asset(
             GetPriorityImageService.getPriorityImage(task.priority),
-            width: 25,
-            height: 25,
+            width: 30,
+            height: 30,
           ),
           const SizedBox(height: 7),
 
@@ -33,8 +33,8 @@ class PriorityDifficultyImage extends StatelessWidget {
             ),
             child: Image.asset(
               GetDifficultyImageService.getDiffucultyImage(task.difficulty),
-              width: 30,
-              height: 30,
+              width: 40,
+              height: 40,
               colorBlendMode: BlendMode.modulate,
             ),
           ),

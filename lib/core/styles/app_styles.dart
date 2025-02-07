@@ -10,13 +10,13 @@ class AppStyles {
   static const TextStyle mediumHintStyle = TextStyle(
     color: Color.fromARGB(255, 78, 78, 78),
     fontFamily: "TeletactileRus",
-    fontSize: 16,
+    fontSize: 18,
   );
 
   static const TextStyle defaultTextStyle = TextStyle(
     color: Color.fromARGB(255, 0, 0, 0),
     fontFamily: "TeletactileRus",
-    fontSize: 14,
+    fontSize: 16,
   );
   static const TextStyle bigHintStyle = TextStyle(
     fontSize: 20,

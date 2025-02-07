@@ -39,7 +39,7 @@ class TaskItem extends StatelessWidget {
               Image.asset(
                 'assets/images/pergament.png',
                 width: double.infinity,
-                height: 100,
+                height: 125,
                 fit: BoxFit.fill,
               ),
               TaskCheckBox(task: task),
