@@ -38,8 +38,8 @@ class DifficultyOption extends StatelessWidget {
               ),
               child: Image.asset(
                 imagePath,
-                width: 70,
-                height: 75,
+                width: 50,
+                height: 55,
                 colorBlendMode: BlendMode.modulate,
               ),
             ),

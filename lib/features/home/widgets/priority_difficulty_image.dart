@@ -20,8 +20,8 @@ class PriorityDifficultyImage extends StatelessWidget {
           // Изображение приоритета
           Image.asset(
             GetPriorityImageService.getPriorityImage(task.priority),
-            width: 30,
-            height: 30,
+            width: 25,
+            height: 25,
           ),
           const SizedBox(height: 7),
 
@@ -33,8 +33,8 @@ class PriorityDifficultyImage extends StatelessWidget {
             ),
             child: Image.asset(
               GetDifficultyImageService.getDiffucultyImage(task.difficulty),
-              width: 40,
-              height: 40,
+              width: 25,
+              height: 25,
               colorBlendMode: BlendMode.modulate,
             ),
           ),

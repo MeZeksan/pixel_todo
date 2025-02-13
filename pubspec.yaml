@@ -28,7 +28,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/stub_hero.png
+    - assets/images/stub_hero.gif
     - assets/images/delete_task.png
 
     - assets/images/low_priority.png
