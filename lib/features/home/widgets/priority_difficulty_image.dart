@@ -14,8 +14,10 @@ class PriorityDifficultyImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      left: 40,
+      height: 70,
+      left: 50,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           // Изображение приоритета
           Image.asset(
@@ -33,7 +35,7 @@ class PriorityDifficultyImage extends StatelessWidget {
             ),
             child: Image.asset(
               GetDifficultyImageService.getDiffucultyImage(task.difficulty),
-              width: 25,
+              width: 23,
               height: 25,
               colorBlendMode: BlendMode.modulate,
             ),

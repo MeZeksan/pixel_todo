@@ -33,8 +33,13 @@ class DeleteTaskDialog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(height: 20),
-                Text("Вы точно хотите удалить задачу\n'${task.taskTitle}'?",
-                    textAlign: TextAlign.center, style: AppStyles.bigTextStyle),
+                SizedBox(
+                  width: 240,
+                  child: Text(
+                      "Вы точно хотите удалить задачу\n'${task.taskTitle}'?",
+                      textAlign: TextAlign.center,
+                      style: AppStyles.bigTextStyle),
+                ),
                 const SizedBox(height: 24),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

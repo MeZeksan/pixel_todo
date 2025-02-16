@@ -13,12 +13,12 @@ class TaskDeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      right: 16,
+      right: 25,
       child: IconButton(
         icon: Image.asset(
           'assets/images/delete_task.png',
-          width: 25,
-          height: 25,
+          width: 15,
+          height: 15,
         ),
         onPressed: () {
           ShowDeleteDialogService.showDeleteDialog(context, task);

@@ -4,6 +4,7 @@
 
 export 'add_task_button.dart';
 export 'add_task_dialog.dart';
+export 'add_task_text_field.dart';
 export 'background_widget.dart';
 export 'delete_task_dialog.dart';
 export 'priority_difficulty_image.dart';

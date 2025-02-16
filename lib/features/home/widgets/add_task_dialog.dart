@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
+import 'package:pixel_todo/features/home/widgets/widgets.dart';
 import 'package:pixel_todo/models/task/task.dart';
 import 'package:uuid/uuid.dart'; // For generating unique IDs
 
@@ -20,7 +21,7 @@ class AddTaskDialog extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            width: 300,
+            width: 350,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: Colors.transparent, // Сделаем фон контейнера прозрачным
@@ -36,18 +37,9 @@ class AddTaskDialog extends StatelessWidget {
                 const SizedBox(height: 20),
                 const Text("Новая задача", style: AppStyles.bigTextStyle),
                 const SizedBox(height: 16),
-                TextField(
-                  style: AppStyles.defaultTextStyle,
-                  maxLines: 2,
-                  controller: taskController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Введите задачу',
-                    labelStyle: TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontFamily: "TeletactileRus",
-                    ),
-                  ),
+                SizedBox(
+                  width: 245,
+                  child: AddTaskTextField(taskController: taskController),
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
@@ -83,13 +75,13 @@ class AddTaskDialog extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 8,
-            right: 8,
+            top: 20,
+            right: 20,
             child: IconButton(
               icon: Image.asset(
                 'assets/images/delete_task.png',
-                width: 25,
-                height: 25,
+                width: 15,
+                height: 15,
               ),
               onPressed: () {
                 Navigator.of(context).pop(); // Закрыть диалог
