@@ -19,7 +19,9 @@ class TaskLabel extends StatelessWidget {
           maxLines: 4,
           overflow: TextOverflow.ellipsis,
           softWrap: true,
-          style: AppStyles.defaultTextStyle),
+          style: task.isCompleted
+              ? AppStyles.completedTextStyle
+              : AppStyles.defaultTextStyle),
     );
   }
 }
