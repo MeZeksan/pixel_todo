@@ -40,14 +40,20 @@ class _SliverTasksState extends State<TasksList> {
           return SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                final task = sortedTasks[index];
-                return TaskItem(
-                  task: task,
-                  key: ValueKey(task.id),
-                  taskBox: state.tasks,
-                );
+                if (index < sortedTasks.length) {
+                  //в конце списка отступ, чтобы можно было удалить задачу
+                  final task = sortedTasks[index];
+                  return TaskItem(
+                    task: task,
+                    key: ValueKey(task.id),
+                    taskBox: state.tasks,
+                  );
+                } else {
+                  return const SizedBox(height: 30);
+                }
               },
-              childCount: sortedTasks.length,
+              childCount: sortedTasks.length +
+                  1, // Увеличиваем количество элементов на 1
             ),
           );
         } else if (state is HomeError) {

@@ -16,10 +16,12 @@ class TaskLabel extends StatelessWidget {
       left: 80,
       right: 56,
       child: Text(task.taskTitle,
-          maxLines: 2,
+          maxLines: 4,
           overflow: TextOverflow.ellipsis,
           softWrap: true,
-          style: AppStyles.defaultTextStyle),
+          style: task.isCompleted
+              ? AppStyles.completedTextStyle
+              : AppStyles.defaultTextStyle),
     );
   }
 }

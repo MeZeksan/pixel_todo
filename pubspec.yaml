@@ -1,7 +1,7 @@
 name: pixel_todo
 description: "Todo RPG - это интерактивное приложение для управления задачами в стиле ретро-пиксельной RPG. Погрузитесь в атмосферу старых видеоигр, одновременно организуя свои дела. Каждая задача имеет параметры приоритета, сложности и даты выполнения. Чем эффективнее вы справляетесь с делами, тем больше наград получаете в игровой механике!"
 publish_to: 'none'
-version: 1.0.0
+version: 1.1.0
 
 homepage: https://github.com/MeZeksan/pixel_todo
 repository: https://github.com/MeZeksan/pixel_todo
@@ -28,7 +28,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/stub_hero.png
+    -assets/screenshots/
+    - assets/images/stub_hero.gif
     - assets/images/delete_task.png
 
     - assets/images/low_priority.png

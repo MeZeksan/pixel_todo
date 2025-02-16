@@ -14,29 +14,31 @@ class HomeScreen extends StatelessWidget {
     final theme = Theme.of(context);
     return BlocProvider(
       create: (context) => HomeBloc(GetIt.I<Box<Task>>())..add(LoadTasks()),
-      child: Scaffold(
-        floatingActionButton: const AddTaskButton(),
-        body: Center(
-          child: Column(
-            children: [
-              Flexible(
-                flex: 2,
-                // TODO убрать заглушку с верхним фоном
-                child: Container(
-                    height: double.maxFinite,
-                    color: theme.primaryColor,
-                    width: double.infinity,
-                    child: Image.asset(
-                      'assets/images/stub_hero.png',
-                      fit: BoxFit.fill,
-                    )),
-              ),
-              // Добавляем фон в области задач
-              const Expanded(
-                flex: 4,
-                child: BackgroundWidget(),
-              ),
-            ],
+      child: SafeArea(
+        child: Scaffold(
+          floatingActionButton: const AddTaskButton(),
+          body: Center(
+            child: Column(
+              children: [
+                Flexible(
+                  flex: 1,
+                  // TODO убрать заглушку с верхним фоном
+                  child: Container(
+                      height: double.maxFinite,
+                      color: theme.primaryColor,
+                      width: double.infinity,
+                      child: Image.asset(
+                        'assets/images/stub_hero.gif',
+                        fit: BoxFit.fill,
+                      )),
+                ),
+                // Добавляем фон в области задач
+                const Expanded(
+                  flex: 3,
+                  child: BackgroundWidget(),
+                ),
+              ],
+            ),
           ),
         ),
       ),

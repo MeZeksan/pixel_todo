@@ -14,7 +14,7 @@ class TaskCheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      left: 16,
+      left: 23,
       child: Checkbox(
         activeColor: Colors.deepPurple,
         checkColor: Colors.lightGreen,
