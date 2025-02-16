@@ -46,7 +46,7 @@
 Ниже представлены основные экраны приложения:
 
 ### Главный экран
-![Главный экран](assets\screenshots\main_screenshot.jpg)
+![Главный экран](assets/screenshots/main_screenshot.jpg)
 
 ### Экран заметки
 ![Экран заметки](assets\screenshots\note_screenshot.jpg)
