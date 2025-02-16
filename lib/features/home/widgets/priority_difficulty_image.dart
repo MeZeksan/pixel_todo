@@ -15,7 +15,7 @@ class PriorityDifficultyImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       height: 70,
-      left: 50,
+      left: 52,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
