@@ -49,10 +49,12 @@
 <img src="assets/screenshots/main_screenshot.jpg"  alt="Главный экран" width="300">
 
 ### Экран заметки
-![Экран заметки](assets\screenshots\note_screenshot.jpg)
-
-### Диалог удаления задачи
-![Диалог удаления задачи](assets\screenshots\delete_task_screenshot.jpg)
+<img src="assets/screenshots/note_screenshot.jpg" alt="Экран задачи / квеста" width="300">
 
 ### Диалог добавления задачи
-![Диалог добавления задачи](assets\screenshots\add_task_screenshot.jpg)
+<img src="assets/screenshots/add_task_screenshot.jpg" alt="Диалог добавления задачи / квеста" width="300">
+
+### Диалог удаления задачи
+<img src="assets/screenshots/delete_task_screenshot.jpg" alt="Диалог удаления задачи / квеста" width="300">
+
+
