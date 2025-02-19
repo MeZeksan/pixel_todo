@@ -20,15 +20,8 @@ class TaskCheckBox extends StatelessWidget {
         checkColor: Colors.lightGreen,
         value: task.isCompleted,
         onChanged: (value) {
-          // Обновление задачи по id
-          final updatedTask = Task(
-              id: task.id,
-              taskTitle: task.taskTitle,
-              isCompleted: value ?? false,
-              taskDescription: task.taskDescription,
-              priority: task.priority,
-              difficulty: task.difficulty,
-              dueDate: task.dueDate);
+          // Создаем обновленную версию задачи с помощью copyWith
+          final updatedTask = task.copyWith(isCompleted: value ?? false);
           //отправляем  событие UpdateTask через Bloc
           context.read<HomeBloc>().add(UpdateTask(updatedTask));
         },
