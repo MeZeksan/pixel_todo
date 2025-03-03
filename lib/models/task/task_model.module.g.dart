@@ -52,8 +52,5 @@ class TaskAdapter extends TypeAdapter<Task> {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is TaskAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+      identical(this, other) || other is TaskAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
 }

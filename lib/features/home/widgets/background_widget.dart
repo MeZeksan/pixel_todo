@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:pixel_todo/features/home/widgets/widgets.dart';
 
 class BackgroundWidget extends StatelessWidget {
@@ -8,17 +11,20 @@ class BackgroundWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
+    return const DecoratedBox(
+      decoration: BoxDecoration(
         image: DecorationImage(
-            alignment: Alignment.topLeft,
-            image: AssetImage('assets/images/wooden_background_desk.png'),
-            fit: BoxFit.contain,
-            repeat: ImageRepeat.repeat, // Повторение фона
-            colorFilter: ColorFilter.mode(
-                Color.fromARGB(255, 211, 183, 122), BlendMode.overlay)),
+          alignment: Alignment.topLeft,
+          image: AssetImage('assets/images/wooden_background_desk.png'),
+          fit: BoxFit.contain,
+          repeat: ImageRepeat.repeat, // Повторение фона
+          colorFilter: ColorFilter.mode(
+            Color.fromARGB(255, 211, 183, 122),
+            BlendMode.overlay,
+          ),
+        ),
       ),
-      child: const CustomScrollView(
+      child: CustomScrollView(
         slivers: [TasksList()],
       ),
     );

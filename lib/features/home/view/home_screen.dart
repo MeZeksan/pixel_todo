@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+// Project imports:
 import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/features/home/widgets/widgets.dart';
 import 'package:pixel_todo/models/task/task.dart';
@@ -13,7 +18,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return BlocProvider(
-      create: (context) => HomeBloc(GetIt.I<Box<Task>>())..add(LoadTasks()),
+      create: (context) => HomeBloc(GetIt.I<Box<Task>>())..add(LoadTasksEvent()),
       child: SafeArea(
         child: Scaffold(
           floatingActionButton: const AddTaskButton(),
@@ -24,13 +29,14 @@ class HomeScreen extends StatelessWidget {
                   flex: 1,
                   // TODO убрать заглушку с верхним фоном
                   child: Container(
-                      height: double.maxFinite,
-                      color: theme.primaryColor,
-                      width: double.infinity,
-                      child: Image.asset(
-                        'assets/images/stub_hero.gif',
-                        fit: BoxFit.fill,
-                      )),
+                    height: double.maxFinite,
+                    color: theme.primaryColor,
+                    width: double.infinity,
+                    child: Image.asset(
+                      'assets/images/stub_hero.gif',
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 ),
                 // Добавляем фон в области задач
                 const Expanded(

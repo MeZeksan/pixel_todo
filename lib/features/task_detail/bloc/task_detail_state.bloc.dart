@@ -7,19 +7,19 @@ abstract class TaskDetailState {
   Task get task;
 }
 
-class TaskDetailInitial extends TaskDetailState {
+class TaskDetailInitialState extends TaskDetailState {
   final Task _task;
 
-  const TaskDetailInitial(this._task);
+  const TaskDetailInitialState(this._task);
 
   @override
   Task get task => _task; // Реализация геттера
 }
 
-class TaskDetailUpdated extends TaskDetailState {
+class TaskDetailUpdatedState extends TaskDetailState {
   final Task _task;
 
-  const TaskDetailUpdated(this._task);
+  const TaskDetailUpdatedState(this._task);
 
   @override
   Task get task => _task; // Реализация геттера

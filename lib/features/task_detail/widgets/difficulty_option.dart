@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:pixel_todo/core/colors/app_colors.dart';
 import 'package:pixel_todo/features/task_detail/bloc/task_detail.bloc.dart';
 
@@ -25,8 +30,7 @@ class DifficultyOption extends StatelessWidget {
 
           return Container(
             decoration: BoxDecoration(
-              border:
-                  isSelected ? Border.all(color: Colors.blue, width: 3) : null,
+              border: isSelected ? Border.all(color: Colors.blue, width: 3) : null,
               borderRadius: BorderRadius.circular(8),
             ),
             child: ColorFiltered(

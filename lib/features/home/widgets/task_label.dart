@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
@@ -19,9 +22,7 @@ class TaskLabel extends StatelessWidget {
           maxLines: 4,
           overflow: TextOverflow.ellipsis,
           softWrap: true,
-          style: task.isCompleted
-              ? AppStyles.completedTextStyle
-              : AppStyles.defaultTextStyle),
+          style: task.isCompleted ? AppStyles.completedTextStyle : AppStyles.defaultTextStyle),
     );
   }
 }

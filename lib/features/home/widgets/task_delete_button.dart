@@ -1,11 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:pixel_todo/features/home/service/service.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class TaskDeleteButton extends StatelessWidget {
   const TaskDeleteButton({
-    super.key,
     required this.task,
+    super.key,
   });
 
   final Task task;

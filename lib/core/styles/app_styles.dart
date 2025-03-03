@@ -1,4 +1,6 @@
 // app_styles.dart
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 class AppStyles {

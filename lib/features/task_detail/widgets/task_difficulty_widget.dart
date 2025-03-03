@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:pixel_todo/features/task_detail/widgets/widgets.dart';
 
 class TaskDifficultyWidget extends StatelessWidget {

@@ -1,9 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/features/home/widgets/widgets.dart';
 import 'package:pixel_todo/models/task/task.dart';
+
 import 'package:uuid/uuid.dart'; // For generating unique IDs
 
 class AddTaskDialog extends StatelessWidget {
@@ -61,14 +67,13 @@ class AddTaskDialog extends StatelessWidget {
 
                       // Смы вытаскиваем экземпляр HomeBloc из дерева виджетов
                       //затем отправляем событие AddTask
-                      context.read<HomeBloc>().add(AddTask(newTask));
+                      context.read<HomeBloc>().add(AddTaskEvent(newTask));
 
                       // Закрываем диалог
                       Navigator.of(context).pop();
                     }
                   },
-                  child:
-                      const Text("Добавить", style: AppStyles.defaultTextStyle),
+                  child: const Text("Добавить", style: AppStyles.defaultTextStyle),
                 ),
                 const SizedBox(height: 20),
               ],

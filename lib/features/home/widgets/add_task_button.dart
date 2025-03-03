@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/features/home/widgets/add_task_dialog.dart';
 
@@ -7,13 +12,12 @@ class AddTaskButton extends StatelessWidget {
   const AddTaskButton({super.key});
 
   void _showCustomDialog(BuildContext context) {
-    showDialog(
+    showDialog<void>(
       barrierDismissible: false,
       context: context,
       builder: (BuildContext dialogContext) {
         return BlocProvider.value(
-          value:
-              BlocProvider.of<HomeBloc>(context), // Передаем существующий BLoC
+          value: BlocProvider.of<HomeBloc>(context), // Передаем существующий BLoC
           child: AddTaskDialog(),
         );
       },

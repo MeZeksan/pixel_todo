@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/features/task_detail/bloc/task_detail.bloc.dart';
 import 'package:pixel_todo/models/task/task.dart';
@@ -45,7 +50,7 @@ class _TaskDescriptionFieldState extends State<TaskDescriptionField> {
       controller: _controller,
       maxLines: 10,
       onChanged: (value) => context.read<TaskDetailBloc>().add(
-            UpdateTaskDescription(value),
+            UpdateTaskDescriptionEvent(value),
           ),
     );
   }

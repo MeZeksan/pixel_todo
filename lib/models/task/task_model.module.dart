@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:hive_flutter/hive_flutter.dart';
 
 part 'task_model.module.g.dart';
@@ -59,8 +60,7 @@ class Task {
   // Переписка оператора == для задач
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Task && runtimeType == other.runtimeType && id == other.id;
+      identical(this, other) || other is Task && runtimeType == other.runtimeType && id == other.id;
 
   @override
   int get hashCode => id.hashCode;

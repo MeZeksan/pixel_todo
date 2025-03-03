@@ -1,15 +1,11 @@
 class GetPriorityImageService {
+  /// Функция для выбора картинки в зависимости от приоритета
   static String getPriorityImage(int priority) {
-    // Функция для выбора картинки в зависимости от приоритета
-    switch (priority) {
-      case 0:
-        return 'assets/images/low_priority.png'; // Изображение для низкого приоритета
-      case 1:
-        return 'assets/images/medium_priority.png'; // Изображение для среднего приоритета
-      case 2:
-        return 'assets/images/top_priority.png'; // Изображение для высокого приоритета
-      default:
-        return 'assets/images/catbox.png'; // По умолчанию низкий приоритет
-    }
+    return switch (priority) {
+      0 => 'assets/images/low_priority.png', // Изображение для низкого приоритета
+      1 => 'assets/images/medium_priority.png', // Изображение для среднего приоритета
+      2 => 'assets/images/top_priority.png', // Изображение для высокого приоритета
+      _ => 'assets/images/catbox.png', // По умолчанию низкий приоритет
+    };
   }
 }
