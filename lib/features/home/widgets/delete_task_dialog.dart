@@ -1,13 +1,21 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
 import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class DeleteTaskDialog extends StatelessWidget {
-  final Task task; // Задача для удаления
+  const DeleteTaskDialog({
+    required this.task,
+    super.key,
+  });
 
-  const DeleteTaskDialog({super.key, required this.task});
+  final Task task; // Задача для удаления
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +33,7 @@ class DeleteTaskDialog extends StatelessWidget {
               color: Colors.transparent,
               borderRadius: BorderRadius.circular(12),
               image: const DecorationImage(
-                image: AssetImage("assets/images/pergament.png"),
+                image: AssetImage('assets/images/pergament.png'),
                 fit: BoxFit.fill,
               ),
             ),
@@ -36,9 +44,10 @@ class DeleteTaskDialog extends StatelessWidget {
                 SizedBox(
                   width: 240,
                   child: Text(
-                      "Вы точно хотите удалить задачу\n'${task.taskTitle}'?",
-                      textAlign: TextAlign.center,
-                      style: AppStyles.bigTextStyle),
+                    "Вы точно хотите удалить задачу\n'${task.taskTitle}'?",
+                    textAlign: TextAlign.center,
+                    style: AppStyles.bigTextStyle,
+                  ),
                 ),
                 const SizedBox(height: 24),
                 Row(
@@ -47,9 +56,7 @@ class DeleteTaskDialog extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         // Отправляем событие DeleteTask в BLoC
-                        context
-                            .read<HomeBloc>()
-                            .add(DeleteTask(taskId: task.id));
+                        context.read<HomeBloc>().add(DeleteTaskEvent(taskId: task.id));
 
                         // Закрываем диалог
                         Navigator.of(context).pop();
@@ -58,10 +65,10 @@ class DeleteTaskDialog extends StatelessWidget {
                         backgroundColor: Colors.redAccent,
                       ),
                       child: const Text(
-                        "Да",
+                        'Да',
                         style: TextStyle(
                           color: Colors.black,
-                          fontFamily: "TeletactileRus",
+                          fontFamily: 'TeletactileRus',
                         ),
                       ),
                     ),
@@ -74,10 +81,10 @@ class DeleteTaskDialog extends StatelessWidget {
                         backgroundColor: Colors.greenAccent,
                       ),
                       child: const Text(
-                        "Нет",
+                        'Нет',
                         style: TextStyle(
                           color: Colors.black,
-                          fontFamily: "TeletactileRus",
+                          fontFamily: 'TeletactileRus',
                         ),
                       ),
                     ),

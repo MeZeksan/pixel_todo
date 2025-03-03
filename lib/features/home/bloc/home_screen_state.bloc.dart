@@ -1,20 +1,20 @@
 part of 'home_screen.bloc.dart';
 
-abstract class HomeState {}
+sealed class HomeState {}
 
-class HomeInitial extends HomeState {}
+class HomeInitialState extends HomeState {}
 
-class HomeLoading extends HomeState {}
+class HomeLoadingState extends HomeState {}
 
-class HomeLoaded extends HomeState {
+class HomeLoadedState extends HomeState {
+  HomeLoadedState(this.tasks);
+
   final Box<Task> tasks;
-
-  HomeLoaded(this.tasks);
 }
 
 //TODO передавать на экран с ошибкой
-class HomeError extends HomeState {
-  final Object? exception;
+class HomeErrorState extends HomeState {
+  HomeErrorState({this.exception});
 
-  HomeError({this.exception});
+  final Object? exception;
 }

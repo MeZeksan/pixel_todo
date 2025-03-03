@@ -1,24 +1,24 @@
 part of 'home_screen.bloc.dart';
 
-abstract class HomeEvent {}
+sealed class HomeEvent {}
 
-class LoadTasks extends HomeEvent {}
+class LoadTasksEvent extends HomeEvent {}
 
-class AddTask extends HomeEvent {
+class AddTaskEvent extends HomeEvent {
   final Task task;
 
-  AddTask(this.task);
+  AddTaskEvent(this.task);
 }
 
-class DeleteTask extends HomeEvent {
+class DeleteTaskEvent extends HomeEvent {
   final String taskId;
 
-  DeleteTask({required this.taskId});
+  DeleteTaskEvent({required this.taskId});
 }
 
-class UpdateTask extends HomeEvent {
+class UpdateTaskEvent extends HomeEvent {
   final Task updatedTask; // Передаем обновленную задачу
-  UpdateTask(this.updatedTask);
+  UpdateTaskEvent(this.updatedTask);
 }
 
-class SyncTasks extends HomeEvent {} // к Firebase
+class SyncTasksEvent extends HomeEvent {} // к Firebase

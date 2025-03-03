@@ -1,6 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+// Project imports:
 import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/features/task_detail/bloc/task_detail.bloc.dart';
 import 'package:pixel_todo/features/task_detail/widgets/widgets.dart';
@@ -58,8 +63,7 @@ class TaskDetailsScreen extends StatelessWidget {
 
 class TaskDetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
-  Size get preferredSize =>
-      const Size.fromHeight(kToolbarHeight); // Указываем высоту AppBar
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight); // Указываем высоту AppBar
   const TaskDetailsAppBar({
     super.key,
   });

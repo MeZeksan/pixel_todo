@@ -1,25 +1,25 @@
 part of 'task_detail.bloc.dart';
 
-abstract class TaskDetailEvent {}
+sealed class TaskDetailEvent {}
 
-class UpdateTaskTitle extends TaskDetailEvent {
+class UpdateTaskTitleEvent extends TaskDetailEvent {
   final String taskTitle;
-  UpdateTaskTitle(this.taskTitle);
+  UpdateTaskTitleEvent(this.taskTitle);
 }
 
-class UpdateTaskDescription extends TaskDetailEvent {
+class UpdateTaskDescriptionEvent extends TaskDetailEvent {
   final String taskDescription;
-  UpdateTaskDescription(this.taskDescription);
+  UpdateTaskDescriptionEvent(this.taskDescription);
 }
 
-class UpdateTaskStatus extends TaskDetailEvent {
+class UpdateTaskStatusEvent extends TaskDetailEvent {
   final bool isChecked;
-  UpdateTaskStatus(this.isChecked);
+  UpdateTaskStatusEvent(this.isChecked);
 }
 
-class UpdateTaskPriority extends TaskDetailEvent {
+class UpdateTaskPriorityEvent extends TaskDetailEvent {
   final int priority;
-  UpdateTaskPriority(this.priority);
+  UpdateTaskPriorityEvent(this.priority);
 }
 
 class UpdateTaskDifficulty extends TaskDetailEvent {

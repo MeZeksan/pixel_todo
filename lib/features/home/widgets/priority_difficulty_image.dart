@@ -1,12 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:pixel_todo/core/colors/app_colors.dart';
 import 'package:pixel_todo/features/home/service/service.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class PriorityDifficultyImage extends StatelessWidget {
   const PriorityDifficultyImage({
-    super.key,
     required this.task,
+    super.key,
   });
 
   final Task task;
@@ -30,11 +33,11 @@ class PriorityDifficultyImage extends StatelessWidget {
           // Изображение сложности с цветовым фильтром
           ColorFiltered(
             colorFilter: ColorFilter.mode(
-              AppColors.difficultyColors[task.difficulty]!.withOpacity(1.0),
+              AppColors.difficultyColors[task.difficulty]!.withOpacity(1),
               BlendMode.modulate,
             ),
             child: Image.asset(
-              GetDifficultyImageService.getDiffucultyImage(task.difficulty),
+              GetDifficultyImageService.getDifficultyImage(task.difficulty),
               width: 23,
               height: 25,
               colorBlendMode: BlendMode.modulate,
