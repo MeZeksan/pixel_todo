@@ -8,6 +8,7 @@ import 'features/home/home.dart';
 import 'models/task/task.dart';
 
 const todoBoxName = 'todo_box_name';
+const completedBoxName = 'completed_box_name';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +22,14 @@ void main() async {
   Hive.registerAdapter(TaskAdapter()); //регистрируем адаптер
 
   var boxTodo = await Hive.openBox<Task>(todoBoxName);
+  var boxCompleted = await Hive.openBox<Task>(completedBoxName);
 
-  GetIt.I.registerSingleton<Box<Task>>(boxTodo);
+  GetIt.I.registerSingleton(todoBoxName, instanceName: todoBoxName);
+  GetIt.I.registerSingleton(completedBoxName, instanceName: completedBoxName);
+
+  GetIt.I.registerSingleton<Box<Task>>(boxTodo, instanceName: todoBoxName);
+  GetIt.I.registerSingleton<Box<Task>>(boxCompleted,
+      instanceName: completedBoxName);
   runApp(const MyApp());
 }
 

@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/features/home/widgets/widgets.dart';
+import 'package:pixel_todo/main.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,7 +14,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return BlocProvider(
-      create: (context) => HomeBloc(GetIt.I<Box<Task>>())..add(LoadTasks()),
+      create: (context) => HomeBloc(
+          GetIt.I<Box<Task>>(instanceName: GetIt.I(instanceName: todoBoxName)))
+        ..add(LoadTasks()),
       child: SafeArea(
         child: Scaffold(
           floatingActionButton: const AddTaskButton(),
