@@ -42,3 +42,9 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 lib/features/demo.dart
+
+# Firebase конфигурации
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+web/firebase-config.js
+web/firebase-messaging-sw.js
