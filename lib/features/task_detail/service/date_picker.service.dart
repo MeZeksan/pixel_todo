@@ -8,8 +8,8 @@ class DatePickerService {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: currentTask.dueDate ?? DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2052),
+      firstDate: DateTime(2024),
+      lastDate: DateTime(2051),
       cancelText: 'Отменить',
       confirmText: 'Подтвердить',
     );
