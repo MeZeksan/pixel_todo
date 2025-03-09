@@ -20,7 +20,9 @@ class _SliverTasksState extends State<TasksList> {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state is HomeLoaded) {
-          final tasksList = state.tasks.values.toList();
+          final tasksBox =
+              widget.isActive ? state.activeTask : state.completeTask;
+          final tasksList = tasksBox.values.toList();
           if (tasksList.isEmpty) {
             return const SliverToBoxAdapter(
               child: Center(
@@ -47,7 +49,7 @@ class _SliverTasksState extends State<TasksList> {
                   return TaskItem(
                     task: task,
                     key: ValueKey(task.id),
-                    taskBox: state.tasks,
+                    taskBox: tasksBox,
                   );
                 } else {
                   return const SizedBox(height: 30);

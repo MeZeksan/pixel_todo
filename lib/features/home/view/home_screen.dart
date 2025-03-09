@@ -44,7 +44,6 @@ class HomeScreen extends StatelessWidget {
                       length: 2,
                       child: Builder(builder: (context) {
                         // Builder Создает локальный контекст для доступа к DefaultTabController.
-                        final tabController = DefaultTabController.of(context);
                         return BlocListener<HomeBloc, HomeState>(
                           listener: (context, state) {},
                           child: const Column(
