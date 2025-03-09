@@ -8,8 +8,9 @@ part 'home_screen_state.bloc.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   //не сделал через GetIt, чтобы нужно было явно передавать бокс
   final Box<Task> _taskBox;
+  final Box<Task> _completedBox;
 
-  HomeBloc(this._taskBox) : super(HomeInitial()) {
+  HomeBloc(this._taskBox, this._completedBox) : super(HomeInitial()) {
     on<LoadTasks>(_onLoadTasks);
     on<AddTask>(_onAddTask);
     on<DeleteTask>(_onDeleteTask);
@@ -21,6 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(HomeLoading()); // Состояние загрузки
     try {
       final tasks = _taskBox;
+      final completedTasks = _completedBox;
       emit(HomeLoaded(tasks)); // Отправляем список задач в состояние
     } catch (e) {
       emit(HomeError(exception: e)); // Обработка ошибок

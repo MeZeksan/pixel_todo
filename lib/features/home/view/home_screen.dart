@@ -15,8 +15,10 @@ class HomeScreen extends StatelessWidget {
     final theme = Theme.of(context);
     return BlocProvider(
       create: (context) => HomeBloc(
-          GetIt.I<Box<Task>>(instanceName: GetIt.I(instanceName: todoBoxName)))
-        ..add(LoadTasks()),
+        GetIt.I<Box<Task>>(instanceName: GetIt.I(instanceName: todoBoxName)),
+        GetIt.I<Box<Task>>(
+            instanceName: GetIt.I(instanceName: completedBoxName)),
+      )..add(LoadTasks()),
       child: SafeArea(
         child: Scaffold(
           floatingActionButton: const AddTaskButton(),
