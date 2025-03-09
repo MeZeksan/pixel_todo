@@ -7,6 +7,7 @@ export 'add_task_dialog.dart';
 export 'add_task_text_field.dart';
 export 'background_widget.dart';
 export 'delete_task_dialog.dart';
+export 'is_complete_tab_bar.dart';
 export 'priority_difficulty_image.dart';
 export 'tasks_list.dart';
 export 'task_date.dart';

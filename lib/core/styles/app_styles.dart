@@ -29,4 +29,9 @@ class AppStyles {
     color: Color.fromARGB(255, 191, 191, 191),
     fontFamily: "TeletactileRus",
   );
+  static const TextStyle littleTextStyle = TextStyle(
+    color: Color.fromARGB(255, 0, 0, 0),
+    fontFamily: "TeletactileRus",
+    fontSize: 12,
+  );
 }

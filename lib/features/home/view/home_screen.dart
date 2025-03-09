@@ -40,27 +40,7 @@ class HomeScreen extends StatelessWidget {
                 // Добавляем фон в области задач
                 const Expanded(
                   flex: 3,
-                  child: DefaultTabController(
-                    length: 2,
-                    child: Column(
-                      children: [
-                        TabBar(
-                          tabs: [
-                            Tab(text: 'Активные'),
-                            Tab(text: 'Выполненные'),
-                          ],
-                        ),
-                        Expanded(
-                          child: TabBarView(
-                            children: [
-                              BackgroundWidget(isActive: true),
-                              BackgroundWidget(isActive: false),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: IsCompleteTabBar(),
                 ),
               ],
             ),
