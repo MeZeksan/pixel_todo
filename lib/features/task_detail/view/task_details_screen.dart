@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/core/styles/app_styles.dart';
 import 'package:pixel_todo/features/task_detail/bloc/task_detail.bloc.dart';
 import 'package:pixel_todo/features/task_detail/widgets/widgets.dart';
@@ -8,18 +7,16 @@ import 'package:pixel_todo/models/task/task.dart';
 
 class TaskDetailsScreen extends StatelessWidget {
   final Task initialTask;
-  final Box<Task> taskBox;
 
   const TaskDetailsScreen({
     super.key,
     required this.initialTask,
-    required this.taskBox,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TaskDetailBloc(initialTask, taskBox),
+      create: (context) => TaskDetailBloc(initialTask),
       child: Scaffold(
         appBar: const TaskDetailsAppBar(),
         body: BlocBuilder<TaskDetailBloc, TaskDetailState>(

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pixel_todo/core/constants/constants.dart';
 import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/features/home/widgets/widgets.dart';
-import 'package:pixel_todo/main.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class HomeScreen extends StatelessWidget {

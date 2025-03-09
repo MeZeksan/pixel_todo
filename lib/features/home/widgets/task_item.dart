@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pixel_todo/features/home/bloc/home_screen.bloc.dart';
 import 'package:pixel_todo/features/home/widgets/widgets.dart';
 import 'package:pixel_todo/features/task_detail/view/view.dart';
@@ -8,8 +7,7 @@ import 'package:pixel_todo/models/task/task.dart';
 
 class TaskItem extends StatelessWidget {
   final Task task;
-  final Box<Task> taskBox;
-  const TaskItem({super.key, required this.task, required this.taskBox});
+  const TaskItem({super.key, required this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,6 @@ class TaskItem extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => TaskDetailsScreen(
                   initialTask: task,
-                  taskBox: taskBox,
                 ),
               ),
             );

@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pixel_todo/core/constants/constants.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 part 'task_detail_event.bloc.dart';
@@ -7,11 +9,14 @@ part 'task_detail_state.bloc.dart';
 
 class TaskDetailBloc extends Bloc<TaskDetailEvent, TaskDetailState> {
   final Task initialTask; // Начальная задача, которая передается в BLoC
-  final Box<Task> taskBox; // Hive-бокс для хранения задач
+
+  // Получаем боксы через GetIt
+  final Box<Task> _taskBox = GetIt.I<Box<Task>>(instanceName: todoBoxName);
+  final Box<Task> _completedBox =
+      GetIt.I<Box<Task>>(instanceName: completedBoxName);
 
   // Конструктор BLoC
-  TaskDetailBloc(this.initialTask, this.taskBox)
-      : super(TaskDetailInitial(initialTask)) {
+  TaskDetailBloc(this.initialTask) : super(TaskDetailInitial(initialTask)) {
     // Регистрируем обработчики событий
     on<UpdateTaskTitle>(_onUpdateTaskTitle);
     on<UpdateTaskDescription>(_onUpdateTaskDescription);
@@ -78,7 +83,15 @@ class TaskDetailBloc extends Bloc<TaskDetailEvent, TaskDetailState> {
   // Обработчик события сохранения задачи
   void _onSaveTask(SaveTaskEvent event, Emitter<TaskDetailState> emit) {
     final currentTask = _currentTask(state);
-    taskBox.put(currentTask.id, currentTask); // Сохраняем задачу в Hive
-    emit(TaskDetailInitial(currentTask)); // Возвращаемся в начальное состояние
+
+    // Определяем целевой бокс в зависимости от статуса
+    final targetBox = currentTask.isCompleted ? _completedBox : _taskBox;
+    final sourceBox = currentTask.isCompleted ? _taskBox : _completedBox;
+
+    // Удаляем из исходного бокса и добавляем в целевой
+    sourceBox.delete(currentTask.id);
+    targetBox.put(currentTask.id, currentTask);
+
+    emit(TaskDetailInitial(currentTask));
   }
 }

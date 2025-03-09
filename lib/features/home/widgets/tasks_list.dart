@@ -49,7 +49,6 @@ class _SliverTasksState extends State<TasksList> {
                   return TaskItem(
                     task: task,
                     key: ValueKey(task.id),
-                    taskBox: tasksBox,
                   );
                 } else {
                   return const SizedBox(height: 30);
