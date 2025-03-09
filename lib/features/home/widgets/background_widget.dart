@@ -18,8 +18,12 @@ class BackgroundWidget extends StatelessWidget {
             colorFilter: ColorFilter.mode(
                 Color.fromARGB(255, 211, 183, 122), BlendMode.overlay)),
       ),
-      child: const CustomScrollView(
-        slivers: [TasksList()],
+      child: CustomScrollView(
+        slivers: [
+          TasksList(
+            isActive: isActive,
+          )
+        ],
       ),
     );
   }

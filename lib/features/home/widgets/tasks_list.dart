@@ -7,7 +7,8 @@ import 'package:pixel_todo/features/home/widgets/task_item.dart';
 import 'package:pixel_todo/models/task/task.dart';
 
 class TasksList extends StatefulWidget {
-  const TasksList({super.key});
+  final bool isActive;
+  const TasksList({super.key, required this.isActive});
 
   @override
   State<TasksList> createState() => _SliverTasksState();
