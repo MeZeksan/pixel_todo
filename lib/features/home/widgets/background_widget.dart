@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pixel_todo/features/home/widgets/widgets.dart';
 
 class BackgroundWidget extends StatelessWidget {
-  const BackgroundWidget({
-    super.key,
-  });
+  final bool
+      isActive; // параметр isActive для разделения экранов на активные и выполненные задачи
+  const BackgroundWidget({super.key, required this.isActive});
 
   @override
   Widget build(BuildContext context) {

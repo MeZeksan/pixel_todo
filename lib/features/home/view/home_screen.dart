@@ -55,8 +55,12 @@ class HomeScreen extends StatelessWidget {
                               ]),
                               Expanded(
                                   child: TabBarView(children: [
-                                BackgroundWidget(),
-                                BackgroundWidget()
+                                BackgroundWidget(
+                                  isActive: true,
+                                ),
+                                BackgroundWidget(
+                                  isActive: false,
+                                )
                               ]))
                             ],
                           ),
