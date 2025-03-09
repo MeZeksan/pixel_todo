@@ -21,9 +21,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   void _onLoadTasks(LoadTasks event, Emitter<HomeState> emit) async {
     emit(HomeLoading()); // Состояние загрузки
     try {
-      final tasks = _taskBox;
-      final completedTasks = _completedBox;
-      emit(HomeLoaded(tasks)); // Отправляем список задач в состояние
+      emit(HomeLoaded(
+          _taskBox, _completedBox, 0)); // Отправляем список задач в состояние
     } catch (e) {
       emit(HomeError(exception: e)); // Обработка ошибок
     }

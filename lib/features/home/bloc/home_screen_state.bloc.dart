@@ -7,9 +7,11 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
-  final Box<Task> tasks;
-
-  HomeLoaded(this.tasks);
+  final Box<Task>
+      activeTask; //изменил боксы с активными и выполненными задачами
+  final Box<Task> completeTask;
+  final int currentTabIndex; //добавил текущий индекс в Tab
+  HomeLoaded(this.activeTask, this.completeTask, this.currentTabIndex);
 }
 
 //TODO передавать на экран с ошибкой
