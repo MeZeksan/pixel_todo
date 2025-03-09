@@ -38,33 +38,29 @@ class HomeScreen extends StatelessWidget {
                       )),
                 ),
                 // Добавляем фон в области задач
-                Expanded(
+                const Expanded(
                   flex: 3,
                   child: DefaultTabController(
-                      length: 2,
-                      child: Builder(builder: (context) {
-                        // Builder Создает локальный контекст для доступа к DefaultTabController.
-                        return BlocListener<HomeBloc, HomeState>(
-                          listener: (context, state) {},
-                          child: const Column(
+                    length: 2,
+                    child: Column(
+                      children: [
+                        TabBar(
+                          tabs: [
+                            Tab(text: 'Активные'),
+                            Tab(text: 'Выполненные'),
+                          ],
+                        ),
+                        Expanded(
+                          child: TabBarView(
                             children: [
-                              TabBar(tabs: [
-                                Tab(text: 'Активные'),
-                                Tab(text: 'Выполненные')
-                              ]),
-                              Expanded(
-                                  child: TabBarView(children: [
-                                BackgroundWidget(
-                                  isActive: true,
-                                ),
-                                BackgroundWidget(
-                                  isActive: false,
-                                )
-                              ]))
+                              BackgroundWidget(isActive: true),
+                              BackgroundWidget(isActive: false),
                             ],
                           ),
-                        );
-                      })),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
