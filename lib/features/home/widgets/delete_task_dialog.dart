@@ -47,9 +47,7 @@ class DeleteTaskDialog extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         // Отправляем событие DeleteTask в BLoC
-                        context
-                            .read<HomeBloc>()
-                            .add(DeleteTask(taskId: task.id));
+                        context.read<HomeBloc>().add(DeleteTask(task: task));
 
                         // Закрываем диалог
                         Navigator.of(context).pop();

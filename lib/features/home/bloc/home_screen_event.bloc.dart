@@ -11,9 +11,9 @@ class AddTask extends HomeEvent {
 }
 
 class DeleteTask extends HomeEvent {
-  final String taskId;
+  final Task task;
 
-  DeleteTask({required this.taskId});
+  DeleteTask({required this.task});
 }
 
 class UpdateTask extends HomeEvent {

@@ -36,16 +36,27 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   //удаление задачи
   void _onDeleteTask(DeleteTask event, Emitter<HomeState> emit) {
-    _taskBox.delete(event.taskId);
+    final task = event.task;
+    if (task.isCompleted) {
+      _completedBox.delete(task.id);
+    } else {
+      _taskBox.delete(task.id);
+    }
     add(LoadTasks());
   }
 
   void _onUpdateTask(UpdateTask event, Emitter<HomeState> emit) {
     try {
-      // Обновляем задачу в Hive
-      _taskBox.put(event.updatedTask.id, event.updatedTask);
+      final task = event.updatedTask;
 
-      // После обновления перезагружаем список задач
+      if (task.isCompleted) {
+        _taskBox.delete(task.id);
+        _completedBox.put(task.id, task);
+      } else {
+        _completedBox.delete(task.id);
+        _taskBox.put(task.id, task);
+      }
+
       add(LoadTasks());
     } catch (e) {
       emit(HomeError(exception: e));

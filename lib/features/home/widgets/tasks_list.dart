@@ -55,8 +55,8 @@ class _SliverTasksState extends State<TasksList> {
                   return const SizedBox(height: 30);
                 }
               },
-              childCount: sortedTasks.length +
-                  1, // Увеличиваем количество элементов на 1
+              childCount:
+                  sortedTasks.length + 1, // Увеличиваем колво элементов на 1
             ),
           );
         } else if (state is HomeError) {
@@ -65,7 +65,6 @@ class _SliverTasksState extends State<TasksList> {
             child: Center(child: Text('Ошибка: ${state.toString()}')),
           );
         }
-
         // Default case
         return const SliverToBoxAdapter();
       },
