@@ -13,6 +13,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return BlocProvider(
       create: (context) => HomeBloc(
         GetIt.I<Box<Task>>(instanceName: GetIt.I(instanceName: todoBoxName)),
@@ -22,25 +24,50 @@ class HomeScreen extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           floatingActionButton: const AddTaskButton(),
-          body: Center(
+          body: DefaultTabController(
+            length: 2,
             child: Column(
               children: [
+                // Область с картинкой и TabBar
                 Flexible(
                   flex: 1,
-                  // TODO убрать заглушку с верхним фоном
-                  child: Container(
-                      height: double.maxFinite,
-                      color: theme.primaryColor,
-                      width: double.infinity,
-                      child: Image.asset(
-                        'assets/images/stub_hero.gif',
-                        fit: BoxFit.fill,
-                      )),
+                  child: Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        color: theme.primaryColor,
+                        child: Image.asset(
+                          'assets/images/stub_hero.gif',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      // TabBar с шириной 50% экрана
+                      Container(
+                        width: screenWidth * 0.35,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10)),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage('assets/images/rock.png'),
+                          ),
+                        ),
+                        child: const isCompleteTabBar(),
+                      ),
+                    ],
+                  ),
                 ),
-                // Добавляем фон в области задач
+                // Область с TabBarView
                 const Expanded(
                   flex: 3,
-                  child: IsCompleteTabBar(),
+                  child: TabBarView(
+                    children: [
+                      BackgroundWidget(isActive: true),
+                      BackgroundWidget(isActive: false),
+                    ],
+                  ),
                 ),
               ],
             ),

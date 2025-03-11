@@ -32,6 +32,8 @@ flutter:
     - assets/screenshots/
     - assets/images/stub_hero.gif
     - assets/images/delete_task.png
+    - assets/images/rock.png
+
 
     - assets/images/low_priority.png
     - assets/images/medium_priority.png
