@@ -28,13 +28,17 @@ class IsCompleteTabBar extends StatelessWidget {
                 unselectedLabelColor: Colors.amberAccent,
                 tabs: [
                   Tab(
-                    icon: Icon(Icons.assignment),
-                    text: 'Активные',
+                    icon: Icon(
+                      Icons.assignment,
+                      size: 30,
+                    ),
                     iconMargin: EdgeInsets.only(bottom: 4),
                   ),
                   Tab(
-                    icon: Icon(Icons.assignment_turned_in),
-                    text: 'Выполненные',
+                    icon: Icon(
+                      Icons.assignment_turned_in,
+                      size: 30,
+                    ),
                     iconMargin: EdgeInsets.only(bottom: 4),
                   ),
                 ],
